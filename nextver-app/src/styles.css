@@ -5,19 +5,19 @@
   font-family: 'Arial', sans-serif; 
 }
 
-  .welcome-container p {
-    font-size: 1.25rem;
-  }
+.welcome-container p {
+  font-size: 1.25rem;
+}
 
-  .welcome-container h1 {
-    font-size: 3rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-  }
+.welcome-container h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
 
-  .welcome-container p {
-    margin-bottom: 2rem;
-  }
+.welcome-container p {
+  margin-bottom: 2rem;
+}
 
 .material-icons {
   font-size: 2rem;
@@ -37,8 +37,8 @@ header {
 }
 
 .light-mode .header-ul {
-  border: 2px solid blue; 
-  border-radius: 15px; 
+  border: 2px solid #848484;
+  border-radius: 15px;
 }
 
 .light-mode {
@@ -130,7 +130,22 @@ html {
   padding: 2rem;
 }
 
-.conic::before {
+  .conic::before {
+    content: '';
+    position: absolute;
+    z-index: -2;
+    left: -50%;
+    top: -50%;
+    width: 200%;
+    height: 200%;
+    background-color: #1a232a;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background: conic-gradient(transparent, rgb(152 152 152), transparent 30%);
+    animation: rotate 4s linear infinite;
+  }
+
+.light-mode .conic::before {
   content: '';
   position: absolute;
   z-index: -2;
@@ -138,16 +153,11 @@ html {
   top: -50%;
   width: 200%;
   height: 200%;
-  background-color: #1a232a;
+  background-color: #e7e7e7;
   background-repeat: no-repeat;
   background-position: 0 0;
-  background: conic-gradient(transparent, rgba(168, 239, 255, 1), transparent 30%);
+  background: conic-gradient(transparent, 818181, transparent 30%);
   animation: rotate 4s linear infinite;
-}
-
-.light-mode .conic::before {
-  background-color: blue;
-  background-image: conic-gradient(transparent, #F9F871, transparent 30%);
 }
 
 .conic::after {
@@ -163,7 +173,7 @@ html {
 }
 
 .light-mode .conic::after {
-  background: #ACA7CB;
+  background: #f6f6f6;
 }
 
 .conic-demo::after {
