@@ -1,0 +1,37 @@
+section {
+  scroll-snap-align: start;
+  height: calc(100vh - 108.8px);
+  width: 80vw;
+  border-radius: 30px;
+  scroll-margin-top: 108.8px;
+  margin: 0 auto;
+}
+
+.section-dark {
+  box-shadow: darkred 0px 0px 90px inset;
+}
+
+.section-light {
+  box-shadow: #bababa 0px 0px 90px inset;
+}
+
+.welcome-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 108.8px);
+  margin-top: 108.8px;
+  text-align: center;
+}
+
+.welcome-text {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+.description {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
