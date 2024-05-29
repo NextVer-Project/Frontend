@@ -29,7 +29,7 @@ export class ProductionService {
     };
 
     const apiUrl = this.url + apiPath;
-    return this.http.get<any>(apiUrl, { observe: 'response' })
+    return this.http.get<any>(apiUrl, { observe: 'response', params: parameters })
       .pipe(map((response: any) => {
         const result = new PaginatedResult<Array<ProductionDto>>();
         result.result = response.body;
@@ -50,11 +50,11 @@ export class ProductionService {
 
   private getApiPath(category: string): string {
     switch (category) {
-      case 'movies':
+      case 'movie':
         return ApiPaths.Movie;
-      case 'games':
+      case 'game':
         return ApiPaths.Game;
-      case 'series':
+      case 'serie':
         return ApiPaths.TvShow;
       default:
         return '';

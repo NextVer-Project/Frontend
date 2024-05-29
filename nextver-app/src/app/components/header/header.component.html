@@ -1,9 +1,10 @@
 <div class="container">
-  <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-2 mb-4 rounded-bottom"
+  <header class="d-flex flex-wrap align-items-end justify-content-center justify-content-md-between py-2 mb-4 rounded-bottom"
           [ngClass]="selectedTheme === 'light' ? 'header-light' : 'header-dark'">
-    <div class="col-md-3 mb-2 mb-md-0 d-flex align-items-center justify-content-center">      
-        <img class="img-logo" [src]="selectedTheme === 'light' ? './assets/Logo_Square_Light_Mode.png' : './assets/Logo_Square_Dark_Mode.png'" alt="NextVer logo" routerLink="/" width="92" height="92" role="img" aria-label="Bootstrap">    
+    <div class="col-md-3 mb-2 mb-md-0 d-flex justify-content-center">
+        <img class="img-logo" [src]="selectedTheme === 'light' ? './assets/Logo_Square_Light_Mode.png' : './assets/Logo_Square_Dark_Mode.png'" alt="NextVer logo" routerLink="/" width="92" height="92" role="img" aria-label="Bootstrap">
     </div>
+
     <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0 header-ul"
         [ngClass]="selectedTheme === 'light' ? 'nav-light' : 'nav-dark'">
         <li>
@@ -18,7 +19,7 @@
         <li><a href="#" class="nav-link px-2">About</a></li>
     </ul>
 
-    <div class="col-md-3 text-end d-flex align-items-center">
+    <div class="col-md-3 text-end d-flex">
       <div *ngIf="user === undefined">
         <button type="button" class="btn btn-outline-danger me-2" routerLink="/login">Login</button>
         <button type="button" class="btn btn-danger" routerLink="/register">Register</button>
@@ -30,7 +31,7 @@
         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           Color Mode
         </a>
-        <ul class="dropdown-menu">          
+        <ul class="dropdown-menu">
           <li (click)="changeTheme('light')">
             <label class="dropdown-item d-flex justify-content-center">
               <input type="radio" name="theme" value="light">
@@ -50,7 +51,7 @@
           </li>
           <li class="dropdown-divider"></li>
           <li class="px-3">
-            <div class="form-check mb-2">              
+            <div class="form-check mb-2">
               <input class="form-check-input"
                      type="checkbox"
                      id="animationToggle"

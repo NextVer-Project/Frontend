@@ -1,21 +1,22 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { MovieDto } from '../../../api/dtos/movie.dto';
 import { DatePipe } from '@angular/common';
-import { ProductionDto } from '../../../api/dtos/production.dto';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CommonService } from '../../../services/common.service';
+import { environment } from '../../../../environments/environment';
 import { AuthService } from '../../../api/auth.service';
+import { ProductionDto } from '../../../api/dtos/production.dto';
 import { User } from '../../../interfaces/user';
+import { CommonService } from '../../../services/common.service';
 
 @Component({
-  selector: 'app-production-row',
-  templateUrl: './production-row.component.html',
-  styleUrls: ['./production-row.component.css']
+  selector: 'app-production-card',
+  templateUrl: './production-card.component.html',
+  styleUrls: ['./production-card.component.css']
 })
-export class ProductionRowComponent implements OnInit {
+export class ProductionCardComponent {
   @Input() public production: ProductionDto | undefined;
   user: User | undefined;
   public releaseYear: string;
+  public selectedCategory: string;
 
   constructor(private datePipe: DatePipe, private router: Router, private commonService: CommonService, private authService: AuthService) {
     this.authService.currentUser$.subscribe(user => {
@@ -39,19 +40,18 @@ export class ProductionRowComponent implements OnInit {
       this.production.formattedProductionCoverUrl = this.production.coverUrl;
       console.log('Formatted Production Cover URL:', this.production?.formattedProductionCoverUrl);
     }
+
+    this.selectedCategory = this.commonService.getSelectedCategory();
   }
 
-
-
-  selectProduction(): void {
+  selectProduction(category: string): void {
     if (this.user !== undefined && this.production) {
-      const category = this.commonService.getSelectedCategory();
       this.commonService.selectedProduction = this.production;
-      this.router.navigate(['/details', category, this.production.id]);
-    } else {
+      this.router.navigate(['/details/', category, this.production.id]);
+    }
+    else
+    {
       console.log('Please Sign In before checking production.');
     }
   }
-
-
 }

@@ -1,14 +1,32 @@
-.list-group-item:hover {
-  background-color: lightgray;
+.card:hover {
+  background-color: #444444;
+  border-color: #ff8587;
   cursor: pointer;
 }
 
 .list-group-item {
+  padding: 0px;
+  background-color: #00000000;
   transition-duration: 0.2s;
 }
 .img-thumbnail-custom {
-  max-width: 100px; 
-  max-height: 150px; 
-  width: auto; 
-  height: auto;
+  max-width: 120px; /* Ustaw maksymalną szerokość obrazka */
+  max-height: 180px; /* Ustaw maksymalną wysokość obrazka */
+  width: auto; /* Automatyczne dostosowanie szerokości w przypadku, gdy obrazek jest większy niż max-width */
+  height: auto; /* Automatyczne dostosowanie wysokości w przypadku, gdy obrazek jest większy niż max-height */
+}
+.card {
+  padding: 0px;
+  border-color: #ff003f;
+  border-bottom: 0px;
+  border-top: 0px;
+  border-right: 0px;
+  border-left-width: 12px;
+  color: white;
+  background-color: #2e2e2e;
+  transition-duration: 0.2s;
+}
+
+.light-text {
+  font-weight: 300;
 }

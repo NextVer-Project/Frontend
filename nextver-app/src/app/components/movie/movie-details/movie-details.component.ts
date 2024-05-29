@@ -14,7 +14,8 @@ import { Modal } from 'bootstrap';
 import { ReleasePlaceForEditDto } from '../../../api/dtos/release-place-for-edit.dto';
 import { MovieQualityVersionDetailsDto } from '../../../api/dtos/movie-quality-version-details.dto';
 import { ProductionTypeForEditDto } from '../../../api/dtos/production-type-for-edit.dto';
-
+import { DatePipe } from '@angular/common';
+import { MovieDto } from '../../../api/dtos/movie.dto';
 
 @Component({
   selector: 'app-movie-details',
@@ -29,28 +30,29 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit, OnDestroy {
   public isFetching = false;
   display = "none";
   productionVersionModal: Modal | undefined;
-
+  selectedMovieVersion: MovieQualityVersionDetailsDto | undefined;
   
-  constructor(private router: Router, private commonService: CommonService, private authService: AuthService, private movieService: MovieService, private releasePlace: ReleasePlaceService, private productionType: ProductionTypeService) {
+  constructor(private router: Router, private commonService: CommonService, private authService: AuthService, private movieService: MovieService, private releasePlace: ReleasePlaceService, private productionType: ProductionTypeService, private datePipe: DatePipe, private route: ActivatedRoute) {
     this.selectedProduction = commonService.selectedProduction;
   }
 
   ngOnInit(): void {
-    if (this.selectedProduction === undefined) {
-      this.router.navigate(['/']);
-    }
+    const movieId =+ this.route.snapshot.paramMap.get('id');
+    this.loadMovieDetails(movieId);
 
-    this.loadMovieDetails(this.selectedProduction.id);
     console.log('Trailer URL:', this.movieDetails?.trailerUrl);
 
     this.playTrailer();
     this.resizeScreen();
+    
   }
 
   ngAfterViewInit(): void {
+    this.loadBackground();
   }
 
   ngOnDestroy(): void {
+
   }
 
   playTrailer(): void {
@@ -65,15 +67,25 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
+  loadBackground(): void {
+    const background = document.getElementById('cover-background');
+    background.style.background = 'linear-gradient(180deg, #000000cc, #000000ee), url("' + this.movieDetails.coverUrl + '")';
+    background.style.backgroundPosition = 'center';
+    background.style.backgroundSize = 'cover';
+    background.style.backgroundRepeat = 'no-repeat';
+    background.style.backgroundColor = 'black';
+  }
+
   private loadMovieDetails(productionId: number): void {
     this.movieDetails = {
-      id: this.selectedProduction.id,
-      title: this.selectedProduction.title,
-      releaseDate: this.selectedProduction.releaseDate,
-      runtime: this.selectedProduction.runtime,
-      description: this.selectedProduction.description,
-      coverUrl: this.selectedProduction.formattedProductionCoverUrl,
+      id: 1,
+      title: "",
+      releaseDate: "",
+      runtime: "",
+      description: "",
+      coverUrl: "",
       trailerUrl: "",
+      viewCounter: 0,
       movieUniverses: [],
       movieGenres: [],
       releasePlaces: [],
@@ -141,11 +153,38 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit, OnDestroy {
             }
           )
         );
+
+        this.selectedMovieVersion = this.movieDetails.movieVersions[0];
+        this.selectedMovieVersion.releasedDate = this.datePipe.transform(this.selectedMovieVersion.releasedDate, 'dd MMM yyyy')
       },
       error => {
         console.error('There was an error while loading movie version details:', error);
       }
     );
+
+    this.movieService.getMovieInfo(productionId).subscribe(
+      (response: MovieDto) => {
+        this.movieDetails.title = response.title;
+        this.movieDetails.releaseDate = this.datePipe.transform(response.releaseDate, 'dd.MM.yyyy')
+        this.movieDetails.description = response.description;
+        this.movieDetails.coverUrl = response.coverUrl;
+        this.movieDetails.viewCounter = response.viewCounter;
+
+        const runtimeMinutes = parseInt(response.runtime, 10);
+        const hours = Math.floor(runtimeMinutes / 60);
+        const minutes = runtimeMinutes % 60;
+        this.movieDetails.runtime = hours + "h " + minutes + " min";
+      },
+      error => {
+        console.error('There was an error while loading movie release places details:', error);
+      }
+    );
+  }
+
+  selectMovieVersion(version: MovieQualityVersionDetailsDto): void {
+    this.selectedMovieVersion = version;
+    const date = this.datePipe.transform(version.releasedDate, 'dd MMM yyyy');
+    this.selectedMovieVersion.releasedDate = date;
   }
 
   openModal() {

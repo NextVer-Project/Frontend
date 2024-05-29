@@ -2,9 +2,10 @@ export interface MovieDto {
   id: number;
   title: string;
   releaseDate: string;
-  runtime: number;
+  runtime: string;
   description: string;
   coverUrl: string;
   trailerUrl: string;
   formattedMovieCoverUrl?: string;
+  viewCounter: number;
 }

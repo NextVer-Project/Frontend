@@ -16,7 +16,6 @@ export class AuthService {
   private readonly helper: JwtHelperService;
   private currentUserSource = new ReplaySubject<User | undefined>(1);
   public currentUser$ = this.currentUserSource.asObservable();
-  private selectedCategory: string;
 
   constructor(private http: HttpClient) {
     this.url = environment.baseUrl + ApiPaths.Auth;
@@ -77,19 +76,12 @@ export class AuthService {
       this.user = undefined;
       return;
     }
+
     this.currentUserSource.next({
       id: parseInt(decoded.nameid, 10),
       name: decoded.unique_name,
       role: parseInt(decoded.role, 10)
     });
-  }
-
-  public setSelectedCategory(category: string): void {
-    this.selectedCategory = category;
-  }
-
-  public getSelectedCategory(): string {
-    return this.selectedCategory;
   }
 
   private handleError(errorRes: HttpErrorResponse): Observable<any> {

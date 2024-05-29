@@ -8,9 +8,11 @@ import { ProductionDto } from '../api/dtos/production.dto';
 export class CommonService {
   public lastPage: number;
   public selectedProduction: ProductionDto | undefined;
+  private selectedCategory: string;
 
   constructor() {
     this.lastPage = 1;
+    this.selectedCategory = 'movie';
   }
 
   public setLastPage(page: number | undefined): void {
@@ -28,13 +30,11 @@ export class CommonService {
     this.selectedCategorySubject.next(category);
   }
 
-  
-
-  getProductionId(): number | undefined {
-    return this.selectedProductionIdSubject.value;
+  public setSelectedCategory(category: string): void {
+    this.selectedCategory = category;
   }
 
-  getCategory(): string | undefined {
-    return this.selectedCategorySubject.value;
+  public getSelectedCategory(): string {
+    return this.selectedCategory;
   }
 }

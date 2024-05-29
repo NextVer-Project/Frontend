@@ -28,7 +28,7 @@ export class ProductionBrowserComponent implements OnInit {
   public fetchFailed = false;
   public shouldDisplayIcons: boolean;
   public isTvShow: boolean;
-  selectedCategory: string = 'movies';
+  public selectedCategory: string = 'movie';
 
 
   constructor(private movieService: MovieService, private productionService: ProductionService, private commonService: CommonService, private authService: AuthService) { }
@@ -39,17 +39,17 @@ export class ProductionBrowserComponent implements OnInit {
     this.getNumberOfProductions();
     this.getProductions(this.commonService.lastPage);
     this.resizeScreen();
-    this.authService.setSelectedCategory(this.selectedCategory);
   }
 
   private getNumberOfMovies(): void {
     this.movieService.GetNumberOfMovies()
       .subscribe((response: MovieCountDto) => {
         this.movieCount = response.numberOfMovies;
-     });
+/*        console.error('There was an error while processing Your request.');
+*/      });
   }
 
-  public getMovies(pageNumber: number = 1, itemsPerPage: number = 20): void {
+  public getMovies(pageNumber: number = 1, itemsPerPage: number = 8): void {
     this.isFetching = true;
     this.movieService.getCurrentMovies(pageNumber, itemsPerPage).subscribe((response: PaginatedResult<Array<MovieDto>>) => {
       this.isFetching = false;
@@ -76,14 +76,22 @@ export class ProductionBrowserComponent implements OnInit {
       });
   }
 
-  public getProductions(pageNumber: number = 1, itemsPerPage: number = 20): void {
+  public getProductions(pageNumber: number = 1, itemsPerPage: number = 8): void {
     this.isFetching = true;
     this.productionService.getCurrentProductions(pageNumber, itemsPerPage, this.selectedCategory)
       .subscribe((response: PaginatedResult<Array<ProductionDto>>) => {
         this.isFetching = false;
         this.fetchFailed = false;
-
         this.productions = response.result;
+
+     /*   this.productions.forEach(production => {
+          if (production.category === 'tvshow') {
+            this.productionService.getTotalDurationForTvShow(production.id)
+              .subscribe((duration: number) => {
+                production.totalDuration = duration;
+              });
+          }
+        });*/
 
         this.pagination = response.pagination;
         this.isFirstPage = this.pagination?.currentPage === 1;
@@ -98,14 +106,14 @@ export class ProductionBrowserComponent implements OnInit {
       });
   }
 
+
+  // Dodaj tę metodę do obsługi zmiany kategorii
   public onCategoryChange() {
     this.getNumberOfProductions();
-    this.authService.setSelectedCategory(this.selectedCategory); 
+    this.commonService.setSelectedCategory(this.selectedCategory); // Ustaw nową kategorię
     this.getProductions(1);
-    this.isTvShow = this.selectedCategory === 'series';
+    this.isTvShow = this.selectedCategory === 'tvshow';
   }
-
-
 
   public changePage(switchToNext: boolean): void {
     // @ts-ignore

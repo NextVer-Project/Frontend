@@ -1,41 +1,56 @@
 <div>
-  <section class="exclude-conic-animation">
-    <div class="welcome-container">
-      <div class="welcome-text">
-        Welcome To NextVer
-      </div>
-      <div class="description">
-        Discover the latest in audio, video, HDR, and other technologies for movies, games, and TV series.
-      </div>
-      <div class="d-flex justify-content-center">
-        <a href="#" class="btn btn-primary mr-3">Login</a>
-        <a href="#" class="btn btn-secondary">Register</a>
-      </div>
-      <div class="mt-5">
-        <i class="fas fa-film fa-3x mr-3"></i>
-        <i class="fas fa-gamepad fa-3x mr-3"></i>
-        <i class="fas fa-tv fa-3x"></i>
-      </div>
-      <div class="mt-3">
-        <i class="material-icons md-48 mr-3">headset</i>
-        <i class="material-icons md-48 mr-3">videogame_asset</i>
-        <i class="material-icons md-48">tv</i>
-      </div>
-    </div>
-  </section>
-  <section [ngClass]="(selectedTheme === 'light' ? 'section-light' : 'section-dark') + (selectedAnimation ? ' conic' : '')" id="sec1">
-    <h1>Section Two</h1>
-    <app-production-search></app-production-search>
-  </section>
-  <section [ngClass]="(selectedTheme === 'light' ? 'section-light' : 'section-dark') + (selectedAnimation ? ' conic' : '')" id="sec2">
-    <h1>Section Three</h1>
-  </section>
-  <section [ngClass]="(selectedTheme === 'light' ? 'section-light' : 'section-dark') + (selectedAnimation ? ' conic' : '')" id="sec3">
-    <h1>Section Four</h1>
-  </section>
-  <section [ngClass]="(selectedTheme === 'light' ? 'section-light' : 'section-dark') + (selectedAnimation ? ' conic' : '')" id="sec4">
-    <h1>Section Five</h1>
-  </section>
+    <section class="exclude-conic-animation">
+        <div class="welcome-container rounded-4 pt-2">
+            <p *ngIf="fetchFailed && !isFetching">Failed to load any productions, please try refreshing the page or contact our support.</p>
+            <div class="mt-4 border-0" *ngIf="!fetchFailed && !isFetching">
+                <div class="row" *ngIf="productions !== undefined && productions.length > 0 && !isFetching">
+                    <h1 class="text-white align-content-start"> Browse recent Movies </h1>
+                    <h2 class="text-white lead"> Explore video and sound technologies with other technical details of <strong> {{ movieCount }} </strong> movies</h2>
+                    <div class="d-flex justify-content-center">
+                        <app-production-card class="d-inline-flex p-3" *ngFor="let production of productions" [production]="production"></app-production-card>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-2" *ngIf="isFetching">
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section [ngClass]="(selectedTheme === 'light' ? 'section-light' : 'section-dark') + (selectedAnimation ? ' conic' : '')" id="sec1">
+        <div class="home-container rounded-4 pt-2">
+            <p *ngIf="fetchFailed && !isFetching">Failed to load any productions, please try refreshing the page or contact our support.</p>
+            <div class="mt-4 border-0" *ngIf="!fetchFailed && !isFetching">
+                <div class="row" *ngIf="productions !== undefined && productions.length > 0 && !isFetching">
+                    <h1 class="text-white align-content-start"> State of the art technologies </h1>
+                    <h2 class="text-white lead"> Wheater it is Movie, TV Show or Video Game, you will find all details</h2>
+                    <div class="d-flex align-content-start flex-wrap justify-content-center">
+                        <div class="m-1" *ngFor="let technology of technologies">
+                            <div class="technology-logo-conatiner p-3 my-1 align-content-center rounded">
+                                <img [src]="technology.logoUrl" alt="{{ technology.name }} Logo" class="align-content-center img-technology-logo">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-2" *ngIf="isFetching">
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section [ngClass]="(selectedTheme === 'light' ? 'section-light' : 'section-dark') + (selectedAnimation ? ' conic' : '')" id="sec2">
+        <h1>Section Three</h1>
+    </section>
+    <section [ngClass]="(selectedTheme === 'light' ? 'section-light' : 'section-dark') + (selectedAnimation ? ' conic' : '')" id="sec3">
+        <h1>Section Four</h1>
+    </section>
+    <section [ngClass]="(selectedTheme === 'light' ? 'section-light' : 'section-dark') + (selectedAnimation ? ' conic' : '')" id="sec4">
+        <h1>Section Five</h1>
+    </section>
 </div>
 
 <div>to get a really cool snapping effect - with CSS only!</div>
