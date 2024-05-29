@@ -1,0 +1,59 @@
+.btn-green {
+  background-color: #2E7D32;
+  color: white;
+  border-radius: 0;
+}
+
+  .btn-green:hover {
+    background-color: white;
+    color: #2E7D32;
+    box-shadow: 0 0 0 0.1rem rgba(255, 255, 255, 0.25);
+  }
+
+.btn-blue {
+  background-color: #1976D2;
+  color: white;
+  border-radius: 0;
+}
+
+  .btn-blue:hover {
+    background-color: white;
+    color: #1976D2;
+    box-shadow: 0 0 0 0.1rem rgba(255, 255, 255, 0.25);
+  }
+
+.btn-teal {
+  background-color: #00796B;
+  color: white;
+  border-radius: 0;
+}
+
+  .btn-teal:hover {
+    background-color: white;
+    color: #00796B;
+    box-shadow: 0 0 0 0.1rem rgba(255, 255, 255, 0.25);
+  }
+
+.btn-indigo {
+  background-color: #3949AB;
+  color: white;
+  border-radius: 0;
+}
+
+  .btn-indigo:hover {
+    background-color: white;
+    color: #3949AB;
+    box-shadow: 0 0 0 0.1rem rgba(255, 255, 255, 0.25);
+  }
+
+.btn-purple {
+  background-color: #9C27B0;
+  color: white;
+  border-radius: 0;
+}
+
+  .btn-purple:hover {
+    background-color: white;
+    color: #9C27B0;
+    box-shadow: 0 0 0 0.1rem rgba(255, 255, 255, 0.25);
+  }

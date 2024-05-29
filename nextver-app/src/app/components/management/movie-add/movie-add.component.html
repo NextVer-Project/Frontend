@@ -1,0 +1,128 @@
+<div class="container-custom">
+    <div class="overlay" *ngIf="isFetching">
+        <div class="position-absolute top-50 start-50 translate-middle">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-xl bg-white ps-5 pe-5">
+        <div class="row">
+            <div class="col mb-5">
+                <h1 class="mt-5">Add movie</h1>
+                <p class="mt-3">Add a new movie to the system.</p>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card mt-2 rounded-0">
+                            <div class="card-body">
+                                <h5 class="card-title col d-flex align-items-center"><span class="material-icons me-2">movie</span>Movie</h5>
+                                <form #movieForm="ngForm" (ngSubmit)="onSubmit(movieForm)">
+                                    <div class="col">
+                                        <div class="row mt-4">
+                                            <div class="col-6">
+                                                <div class="form-floating">
+                                                    <input type="text"
+                                                           class="form-control rounded-0"
+                                                           id="title"
+                                                           placeholder="Title"
+                                                           ngModel name="title"
+                                                           required>
+                                                    <label for="title">Title</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="form-floating">
+                                                    <input type="text"
+                                                           class="form-control rounded-0"
+                                                           id="releaseDate"
+                                                           placeholder="ReleaseDate"
+                                                           ngModel name="releaseDate"
+                                                           required>
+                                                    <label for="releaseDate">Release Date</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-4">
+                                            <div class="col-6">
+                                                <div class="form-floating">
+                                                    <input type="text"
+                                                           class="form-control rounded-0"
+                                                           id="runtime"
+                                                           placeholder="Runtime"
+                                                           ngModel name="runtime"
+                                                           required>
+                                                    <label for="runtime">Runtime</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="form-floating">
+                                                    <input type="text"
+                                                           class="form-control rounded-0"
+                                                           id="description"
+                                                           placeholder="Description"
+                                                           ngModel name="description"
+                                                           required>
+                                                    <label for="description">Description</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="form-floating">
+                                                    <input type="text"
+                                                           class="form-control rounded-0"
+                                                           id="movieCoverUrl"
+                                                           placeholder="MvieCoverUrl"
+                                                           ngModel name="movieCoverUrl"
+                                                           required>
+                                                    <label for="movieCoverUrl">Movie cover Url</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="form-floating">
+                                                    <input type="text"
+                                                           class="form-control rounded-0"
+                                                           id="movieTrailerUrl"
+                                                           placeholder="MovieTrailerUrl"
+                                                           ngModel name="movieTrailerUrl"
+                                                           required>
+                                                    <label for="movieTrailerUrl">Movie trailer Url</label>
+                                                </div>
+                                            </div>                                           
+                                            <div class="form-group">
+                                                <label>Universes</label>
+                                                <div>
+                                                    <button type="button" class="btn btn-outline-primary me-2 mb-2"
+                                                            *ngFor="let universe of universes"
+                                                            [class.active]="selectedUniverses.includes(universe.id)"
+                                                            (click)="toggleSelection(universe.id, 'universe')">
+                                                        {{ universe.name }}
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Genres</label>
+                                                <div>
+                                                    <button type="button" class="btn btn-outline-primary me-2 mb-2"
+                                                            *ngFor="let genre of genres"
+                                                            [class.active]="selectedGenres.includes(genre.id)"
+                                                            (click)="toggleSelection(genre.id, 'genre')">
+                                                        {{ genre.name }}
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col d-flex justify-content-end">
+                                            <button class="btn-base btn-black" type="submit" [disabled]="!movieForm.valid">Create</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
