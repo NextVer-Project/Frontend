@@ -21,6 +21,10 @@ import { LoginComponent } from './components/login/login.component';
 import { MovieDetailsComponent } from './components/movie/movie-details/movie-details.component';
 import { TvshowDetailsComponent } from './components/tvshow/tvshow-details/tvshow-details.component';
 import { MovieQualityVersionsDetailsComponent } from './components/movie/movie-details/movie-quality-versions-details/movie-quality-versions-details.component';
+import { ManagementComponent } from './components/management/management.component';
+import { MovieAddComponent } from './components/management/movie-add/movie-add.component';
+import { TvshowAddComponent } from './components/management/tvshow-add/tvshow-add.component';
+import { ProductionSearchComponent } from './components/productionbrowser/production-search/production-search.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -28,7 +32,10 @@ const appRoutes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'movie', component: MovieComponent },
   { path: 'browser', component: ProductionBrowserComponent },
-  { path: 'details/:category/:id', component: MovieDetailsComponent }
+  { path: 'details/:category/:id', component: MovieDetailsComponent },
+  { path: 'management', component: ManagementComponent },
+  { path: 'management/movie/add', component: MovieAddComponent },
+  { path: 'management/tvshow/add', component: TvshowAddComponent }
 ];
 
 @NgModule({
@@ -46,7 +53,11 @@ const appRoutes: Routes = [
     MovieDetailsComponent,
     TvshowDetailsComponent,
     SafePipe,
-    MovieQualityVersionsDetailsComponent
+    MovieQualityVersionsDetailsComponent,
+    ManagementComponent,
+    MovieAddComponent,
+    TvshowAddComponent,
+    ProductionSearchComponent
   ],
   imports: [
     BrowserModule,
