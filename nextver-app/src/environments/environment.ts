@@ -16,6 +16,9 @@ export enum ApiPaths {
   ReleasePlace = '/releaseplace',
   ProductionType = '/productiontype',
   Technology = '/technology',
+  Management = '/management',
+  Universe = '/universe',
+  Genre = '/genre',
 }
 
 /*
