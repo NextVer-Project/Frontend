@@ -14,6 +14,7 @@ import { GenreForEditDto } from './dtos/genre-for-edit.dto';
 import { UniverseForEditDto } from './dtos/universe-for-edit.dto';
 import { ReleasePlaceForEditDto } from './dtos/release-place-for-edit.dto';
 import { MovieQualityVersionDetailsDto } from './dtos/movie-quality-version-details.dto';
+import { MovieForListDto } from './dtos/movie-for-list.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -97,6 +98,20 @@ export class MovieService {
 
     return this.http.get<Array<MovieQualityVersionDetailsDto>>(apiUrl).pipe(
       map((responseData: Array<MovieQualityVersionDetailsDto>) => responseData));
+  }
+
+  public CreateMovie(movie: MovieForAddDto): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${this.authService.getToken()}`
+    });
+
+    return this.http.post(this.url, movie, { headers }).pipe(catchError(this.handleError));
+  }
+
+  searchMovies(query: string): Observable<MovieForListDto[]> {
+    
+    return this.http.get<MovieForListDto[]>(`${this.url}/search?title=${query}`);
   }
 
   private handleError(errorRes: HttpErrorResponse): Observable<any> {
