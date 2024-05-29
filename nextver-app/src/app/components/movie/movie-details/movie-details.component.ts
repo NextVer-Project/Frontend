@@ -44,7 +44,6 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.playTrailer();
     this.resizeScreen();
-    
   }
 
   ngAfterViewInit(): void {
@@ -155,7 +154,7 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit, OnDestroy {
         );
 
         this.selectedMovieVersion = this.movieDetails.movieVersions[0];
-        this.selectedMovieVersion.releasedDate = this.datePipe.transform(this.selectedMovieVersion.releasedDate, 'dd MMM yyyy')
+        this.selectedMovieVersion.releaseDate = this.datePipe.transform(this.selectedMovieVersion.releaseDate, 'dd MMM yyyy')
       },
       error => {
         console.error('There was an error while loading movie version details:', error);
@@ -183,8 +182,8 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   selectMovieVersion(version: MovieQualityVersionDetailsDto): void {
     this.selectedMovieVersion = version;
-    const date = this.datePipe.transform(version.releasedDate, 'dd MMM yyyy');
-    this.selectedMovieVersion.releasedDate = date;
+    const date = this.datePipe.transform(version.releaseDate, 'dd MMM yyyy');
+    this.selectedMovieVersion.releaseDate = date;
   }
 
   openModal() {

@@ -1,7 +1,7 @@
 export interface ProductionDto {
   id: number;
   title: string;
-  releaseDate: string;
+  releaseDate: Date;
   runtime: string;
   description: string;
   coverUrl: string;
