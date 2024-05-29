@@ -1,8 +1,7 @@
 .welcome-container {
-  height: 100vh;
   background-image: linear-gradient(to bottom right, #20232a, #2c3e50);
   color: #ffffff;
-  font-family: 'Arial', sans-serif; 
+  font-family: 'Arial', sans-serif;
 }
 
 .welcome-container p {
@@ -46,7 +45,6 @@ header {
   color: #09385c;
 }
 
-
 .dark-mode {
   background-color: #101014;
   color: #e6e6ea;
@@ -63,22 +61,36 @@ header {
 }
 
 .header-dark {
-  background-color: black;  
-  box-shadow: darkred 0px 20px 30px -10px, red 0px -10px 45px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+  background-color: black;
+  /*box-shadow: darkred 0px 20px 30px -10px, red 0px -10px 45px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+*/ box-shadow: darkred 0px 0px 15px 5px, red 0px -5px 0px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
 }
 
 .nav-light a {
   color: #09385c; 
 }
 
+.nav-light a:hover {
+  color: #c70000;
+}
+
 .nav-dark a {
-  color: #90d4ea; 
+  color: #bdbdbd;
 }
 
-.content { 
-  margin-top: 108.8px;   
+.nav-dark a:hover {
+  color: #c70000;
 }
 
+.under-header-content { 
+  margin-top: 148.8px;   
+}
+
+.technology-logo-size {
+  width: 128px;
+  height: 18px;
+
+}
 html {
   font-family: sans-serif;
   -ms-scroll-snap-type: mandatory;
@@ -89,14 +101,13 @@ html {
   scroll-snap-type: y mandatory;
 }
 
-
 .header-dark .btn-outline-primary {
   background-color: white; 
   border-color: darkblue; 
   color: black;
 }
 
-.btn-circle {
+.login-dark-mode .btn-circle {
   background-color: black;
   color: white;
   width: 50px;
@@ -104,7 +115,18 @@ html {
   margin: 15px;
   padding: 10px 15px;
   border-radius: 25px;
-  border-color: transparent;
+  border-color: white;
+}
+
+.login-light-mode .btn-circle {
+  background-color: white;
+  color: black;
+  width: 50px;
+  height: 50px;
+  margin: 15px;
+  padding: 10px 15px;
+  border-radius: 25px;
+  border-color: black;
 }
 
 *,
@@ -130,20 +152,20 @@ html {
   padding: 2rem;
 }
 
-  .conic::before {
-    content: '';
-    position: absolute;
-    z-index: -2;
-    left: -50%;
-    top: -50%;
-    width: 200%;
-    height: 200%;
-    background-color: #1a232a;
-    background-repeat: no-repeat;
-    background-position: 0 0;
-    background: conic-gradient(transparent, rgb(152 152 152), transparent 30%);
-    animation: rotate 4s linear infinite;
-  }
+.conic::before {
+  content: '';
+  position: absolute;
+  z-index: -2;
+  left: -50%;
+  top: -50%;
+  width: 200%;
+  height: 200%;
+  background-color: #1a232a;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background: conic-gradient(transparent, rgb(152 152 152), transparent 30%);
+  animation: rotate 4s linear infinite;
+}
 
 .light-mode .conic::before {
   content: '';
@@ -219,3 +241,5 @@ html {
   font-size: 1.6rem;
   padding: 0;
 }
+
+
