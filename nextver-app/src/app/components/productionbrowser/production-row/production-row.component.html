@@ -1,0 +1,11 @@
+<li class="list-group-item" (click)="selectProduction()">
+  <div class="row">
+    <div class="col">
+      <img [src]="production?.formattedProductionCoverUrl" alt="Production Cover" class="img-thumbnail-custom">
+    </div>
+    <div class="col">{{production?.title}}</div>
+    <div class="col">{{production?.releaseDate}}</div>
+    <div class="col">{{production?.description}}</div>
+    <div class="col">{{production?.runtime}}</div>
+  </div>
+</li>

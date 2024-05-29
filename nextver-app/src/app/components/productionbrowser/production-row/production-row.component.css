@@ -1,0 +1,14 @@
+.list-group-item:hover {
+  background-color: lightgray;
+  cursor: pointer;
+}
+
+.list-group-item {
+  transition-duration: 0.2s;
+}
+.img-thumbnail-custom {
+  max-width: 100px; 
+  max-height: 150px; 
+  width: auto; 
+  height: auto;
+}
