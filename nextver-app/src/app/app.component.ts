@@ -41,13 +41,11 @@ export class AppComponent implements OnInit {
 
   @HostListener('window:scroll', ['$event'])
   onScroll(event: Event): void {
-    if (this.selectedScrollSnapState) { // Sprawdź, czy Scroll Snap jest aktywny
-      this.uiPresentationConfigService.applyScrollSnap(true); // Wywołaj metodę applyScrollSnap tylko gdy Scroll Snap jest aktywny
+    if (this.selectedScrollSnapState) { 
+      this.uiPresentationConfigService.applyScrollSnap(true);
     }
   }
-
 }
-
 
 @Pipe({ name: 'safe' })
 export class SafePipe implements PipeTransform {
