@@ -1,0 +1,61 @@
+.genre-item {
+  display: inline-block;
+  margin-right: 10px; 
+}
+
+.tech-item {
+  display: inline-block;
+  margin-right: 20px; 
+  background-color: antiquewhite;
+  color: black;
+}
+.universe-item {
+  display: inline-block;
+  margin-right: 10px; 
+}
+.details-section {
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+.section-title {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.universe-item, .genre-item {
+  margin-bottom: 5px;
+}
+
+.separator {
+  margin-right: 5px;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.highlighted {
+  background-color: #292b2c;
+  color: #ffffff; 
+  padding: 2px;
+  border-radius: 3px;
+}
+
+.img-thumbnail-custom {
+  max-width: 300px; 
+  max-height: 450px; 
+  width: auto;
+  height: auto; 
+}
+
+.movie-version-container {
+  border: 1px solid #ddd; 
+  margin-bottom: 10px; 
+}
+
+.version-details {
+  padding: 10px;
+}
+.container {
+  margin-top: 148.8px;
+}

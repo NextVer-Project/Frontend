@@ -1,0 +1,66 @@
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#vodDetailsModal">
+  Otwórz modal
+</button>
+
+<div class="modal fade" id="vodDetailsModal" tabindex="-1" aria-labelledby="vodDetailsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="vodDetailsModalLabel">Informacje o wersji VOD</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div class="row">           
+            <div class="col-md-2 border-end" style="max-height: 480px; overflow-y: auto;">
+              <button type="button" class="btn btn-outline-secondary mb-2">Test </button>
+              <button type="button" class="btn btn-outline-secondary mb-2" *ngFor="let version of moviesDetails.movieVersions" (click)="selectMovieVersion(version)">{{ version.releasePlace.name }}</button>
+            </div>
+           
+            <div class="col-md-10">
+              <div *ngIf="selectedMovieVersion">
+                <p>{{ selectedMovieVersion.releasePlace.name }}</p>
+                <div class="grid-container">
+                  <ng-container *ngFor="let technology of selectedMovieVersion.technologies">
+                    <div class="technology-section" *ngIf="technology.technologyTypeId === 1">
+                      <p class="technology-title">Audio Quality</p>
+                      <div class="technology-details">
+                        <img [src]="technology.logoUrl" alt="Logo" class="technology-logo me-2">
+                        <p>{{ technology.name }}</p>
+                      </div>
+                    </div>
+                    <div class="technology-section" *ngIf="technology.technologyTypeId === 2">
+                      <p class="technology-title">Resolution</p>
+                      <div class="technology-details">
+                        <img [src]="technology.logoUrl" alt="Logo" class="technology-logo me-2">
+                        <p>{{ technology.name }}</p>
+                      </div>
+                    </div>
+                    <div class="technology-section" *ngIf="technology.technologyTypeId === 3">
+                      <p class="technology-title">HDR Quality type</p>
+                      <div class="technology-details">
+                        <img [src]="technology.logoUrl" alt="Logo" class="technology-logo me-2">
+                        <p>{{ technology.name }}</p>
+                      </div>
+                    </div>
+                    <div class="technology-section" *ngIf="technology.technologyTypeId === 4">
+                      <p class="technology-title">3D option</p>
+                      <div class="technology-details">
+                        <img [src]="technology.logoUrl" alt="Logo" class="technology-logo me-2">
+                        <p>{{ technology.name }}</p>
+                      </div>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+              <p *ngIf="!selectedMovieVersion">Wybierz wersję filmu z lewej strony.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
+      </div>
+    </div>
+  </div>
+</div>
