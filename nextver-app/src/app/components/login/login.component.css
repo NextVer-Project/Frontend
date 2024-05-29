@@ -1,0 +1,55 @@
+.form-signin {
+  width: 100%;
+  max-width: 370px;
+  padding: 40px;
+  margin: auto;
+  border-radius: 20px;
+}
+
+.form-signin input {
+  border-radius: 20px;
+}
+
+.login-light-mode .form-signin {
+  background-color: white;
+  box-shadow: rgb(38, 57, 77) 0px 10px 40px -15px;
+  border: solid 1px #ccc;
+}
+
+.login-light-mode a {
+  color: black;
+}
+
+.login-light-mode a:hover {
+  color: lightgray;
+}
+
+.login-light-mode .form-signin input:focus {
+  border-color: lightgray;
+  box-shadow: rgb(38, 57, 77) 0px 0px 20px 0px;
+}
+
+.login-dark-mode .form-signin {
+  background-color: black;
+  box-shadow: darkred 0px 0px 30px 0px;
+  border: none;
+}
+
+.login-dark-mode .form-signin input {
+  background-color: #101014;
+  color: white;
+}
+
+.login-dark-mode .form-signin a {
+  color: white;
+}
+
+.login-dark-mode .form-signin a:hover {
+  color: darkred;
+}
+
+.login-dark-mode .form-signin input:focus {
+  border: solid 3px green;
+  border-color: red;
+  box-shadow: darkred 0px 0px 30px 0px;
+}

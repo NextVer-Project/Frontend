@@ -1,0 +1,47 @@
+<div class="container-custom">
+  <div class="overlay" *ngIf="isFetching">
+    <div class="position-absolute top-50 start-50 translate-middle">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </div>
+  <button type="button" class="btn-circle" routerLink="/"><span class="material-icons">arrow_back_ios</span></button>
+  <div class="form-signin position-absolute top-50 start-50 translate-middle">
+    <form class="text-center" #regForm="ngForm" (ngSubmit)="onSubmit(regForm)">
+      <h1 class="h1 mt-2 mb-5 fw-bold">Register</h1>
+      <div class="form-floating mb-5">
+        <input type="text"
+               class="form-control rounded-0"
+               id="username"
+               placeholder="Username"
+               ngModel
+               name="username"
+               required>
+        <label for="username">Username</label>
+      </div>
+      <div class="form-floating mb-5">
+        <input type="password"
+               class="form-control rounded-0"
+               id="password"
+               placeholder="Password"
+               ngModel name="password"
+               required
+               minlength="8">
+        <label for="password">Password</label>
+      </div>
+      <div class="form-floating mb-5">
+        <input type="email"
+               class="form-control  rounded-0"
+               id="email"
+               placeholder="name@example.com"
+               ngModel name="email"
+               required
+               email>
+        <label for="email">Email address</label>
+      </div>
+      <button class="btn-base btn-black w-100" type="submit" [disabled]="!regForm.valid">Register</button>
+    </form>
+    <p class="mt-2 mb-2 text-muted text-center"> Already registered? <a routerLink="../login"><b>Sign in</b></a></p>
+  </div>
+</div>

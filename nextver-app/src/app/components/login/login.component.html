@@ -1,0 +1,36 @@
+<div class="container-custom"  [ngClass]="selectedTheme === 'light' ? 'login-light-mode' : 'login-dark-mode'">
+  <div class="overlay" *ngIf="isFetching">
+    <div class="position-absolute top-50 start-50 translate-middle">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </div>
+  <button type="button" class="btn-circle" routerLink="/"><span class="material-icons">arrow_back_ios</span></button>
+  <div class="form-signin rounded-10 position-absolute top-50 start-50 translate-middle">
+    <form class="text-center" #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+      <h1 class="h1 mt-2 mb-5 fw-bold">Sign in</h1>
+      <div class="form-floating mb-5">
+        <input type="text"
+               class="form-control rounded-10"
+               id="username"
+               placeholder="Username"
+               ngModel
+               name="username"
+               required>
+        <label for="username">Username</label>
+      </div>
+      <div class="form-floating mb-5">
+        <input type="password"
+               class="form-control rounded-10"
+               id="password"
+               placeholder="Password"
+               ngModel name="password"
+               required>
+        <label for="password">Password</label>
+      </div>
+      <button class="btn-base btn-black w-100" type="submit" [disabled]="!authForm.valid">Sign in</button>
+    </form>
+    <p class="mt-2 mb-2 text-muted text-center"> Need an account? <a routerLink="../register"><b>Register</b></a></p>
+  </div>
+</div>
