@@ -9,10 +9,12 @@
   background-color: antiquewhite;
   color: black;
 }
+
 .universe-item {
   display: inline-block;
   margin-right: 10px; 
 }
+
 .details-section {
   margin-bottom: 15px;
   border: 1px solid #ddd;
@@ -42,20 +44,63 @@
 }
 
 .img-thumbnail-custom {
-  max-width: 300px; 
-  max-height: 450px; 
-  width: auto;
-  height: auto; 
-}
-
-.movie-version-container {
-  border: 1px solid #ddd; 
-  margin-bottom: 10px; 
+  max-height: 440px;
+  max-width: 293px;
 }
 
 .version-details {
   padding: 10px;
 }
+
 .container {
   margin-top: 148.8px;
+}
+
+.images-inner {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.img-platform-container {
+  max-height: 106px;
+  max-width: 180px;
+  background-color: #ffffff;
+  border: 1px solid #000000;
+}
+
+.img-platform-logo {
+  max-height: 82px;
+  max-width: 140px;
+}
+
+.platform {
+  background: linear-gradient(180deg, #020202, #76011e)
+}
+
+.technology-logo-conatiner {
+  height: 80px;
+  max-width: 180px;
+  background-color: #ffffff;
+  
+}
+
+.img-technology-logo {
+  max-height: 60px;
+  max-width: 140px;
+}
+
+.version-detail-container{
+  background-color: #2f2f2f00;
+}
+
+.special-card {
+  background-color: #00000000;
+  box-shadow: inset 0px 0px 0px 2px rgba(255, 0, 63, 1), 0px 0px 16px 8px rgba(167, 11, 45, 1);
+}
+
+.platform-detial-container {
+  max-height: 150px;
+  max-width: 275px;
+  background-color: #ffffff;
+  border: 1px solid #000000;
 }

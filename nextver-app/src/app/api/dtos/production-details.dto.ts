@@ -6,4 +6,7 @@ export interface ProductionDetailsDto {
   description: string;
   coverUrl: string;
   trailerUrl: string;
+  movieUniverses: MovieUniverse[];
+  movieGenres: MovieGenre[];
+  productionVersions: ProductionVersion[];
 }

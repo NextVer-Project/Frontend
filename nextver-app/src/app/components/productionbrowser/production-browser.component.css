@@ -6,3 +6,13 @@
 .container {
   min-height: 44.5rem;
 }
+.list-group{
+    background-color: #00000000
+}
+.card {
+  color: white;
+  background-color: #00000000;
+}
+.container-xl {
+  background-color: #202020;
+}

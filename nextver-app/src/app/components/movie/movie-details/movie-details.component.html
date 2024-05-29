@@ -1,65 +1,91 @@
-<div class="container under-header-content" *ngIf="movieDetails">
-    <div class="row">
-        <div class="col-md-4">
-            <img [src]="movieDetails.coverUrl" alt="{{ movieDetails.title }} Cover" class="img-thumbnail-custom rounded">
+<!-- Okładka -->
+<div class="container-fluid under-header-content" *ngIf="movieDetails" id="cover-background">
+  <div class="row justify-content-md-center">
+    <div class="col-md-2 d-flex flex-column align-items-end">
+      <img [src]="movieDetails.coverUrl" alt="{{ movieDetails.title }} Cover" class="img-thumbnail-custom rounded">
+    </div>
+    <div class="col-md-5 mt-4 d-flex align-items-start flex-column">
+      <div class="p-1"><h2>{{ movieDetails.title }}</h2></div>
+      <div *ngIf="movieDetails.movieUniverses && movieDetails.movieUniverses.length > 0">
+        <div class="mt-2 px-1"><strong>Universes</strong></div>
+        <ng-container *ngFor="let universe of movieDetails.movieUniverses; let last = last">
+          <span class="px-1">{{ universe.name }}</span>{{ !last ? ' • ' : '' }}
+        </ng-container>
+      </div>
+      <div>
+        <div class="mt-2 px-1"><strong>Genre</strong></div>
+        <ng-container *ngFor="let genre of movieDetails.movieGenres; let last = last">
+          <span class="px-1">{{ genre.name }}</span>{{ !last ? ' • ' : '' }}
+        </ng-container>
+      </div>
+      <div class="lead mt-auto mb-5 p-1"><p> {{ movieDetails.description }}</p></div>
+    </div>
+    <div class="col-md-2 mt-4 d-flex align-items-start flex-column">
+      <div class="p-1"><h2>Details</h2></div>
+      <div class="mt-2 px-1"><strong>Release Date</strong></div>
+      <div class="px-1">{{ movieDetails.releaseDate }}</div>
+      <div class="mt-2 px-1"><strong>Duration</strong></div>
+      <div class="px-1">{{ movieDetails.runtime }}</div>
+      <div class="mt-2 px-1"><strong>Views</strong></div>
+      <div class="px-1">{{ movieDetails.viewCounter }}</div>
+    </div>
+  </div>
+</div>
+<!-- Available on -->
+<div class="row justify-content-md-center">
+  <div class="col d-flex align-items-center flex-column platform">
+    <div class="mt-2 px-1"><h3>Available on</h3></div>
+    <div class="d-flex flex-wrap">
+      <ng-container *ngFor="let version of movieDetails.movieVersions">
+        <div class="img-platform-container m-2 p-3 align-content-center rounded" (click)="selectMovieVersion(version)" style="cursor: pointer;">
+          <img [src]="version.releasePlace.logoUrl" alt="{{ version.releasePlace.name }} Cover" class="img-platform-logo">
         </div>
-        <div class="col-md-8">
-            <h2>{{ movieDetails.title }}</h2>
-            <p><strong>Release Date:</strong> {{ movieDetails.releaseDate }}</p>
-            <p><strong>Runtime:</strong> {{ movieDetails.runtime }}</p>
-            <p><strong>Description:</strong> {{ movieDetails.description }}</p>
-            <p><app-movie-quality-versions-details [moviesDetails]="movieDetails"></app-movie-quality-versions-details></p>
-            <div class="details-section">
-                <p class="section-title"><strong>Movie Universe:</strong></p>
-                <ng-container *ngFor="let universe of movieDetails.movieUniverses; let last = last">
-                    <span class="universe-item highlighted">{{ universe.name }}</span>
-                    <span *ngIf="!last" class="separator">,</span>
-                </ng-container>
-            </div>
-            <div class="details-section">
-                <p class="section-title"><strong>Movie Genres:</strong></p>
-                <ng-container *ngFor="let genre of movieDetails.movieGenres; let last = last">
-                    <span class="genre-item highlighted">{{ genre.name }}</span>
-                    <span *ngIf="!last" class="separator">,</span>
-                </ng-container>
-            </div>
-
-            <div class="details-section">
-                <p class="section-title"><strong>Movie Release Places:</strong></p>
-                <ng-container *ngFor="let releasePlace of movieDetails.releasePlaces; let last = last">
-                    <span class="genre-item highlighted">{{ releasePlace.name }}</span>
-                    <span *ngIf="!last" class="separator">,</span>
-                </ng-container>
-            </div>
-            <div class="details-section">
-                <p class="section-title"><strong>Movie Versions:</strong></p>
-                <ng-container *ngFor="let movieVersion of movieDetails.movieVersions; let lastMovie = last">
-                    <span class="genre-item highlighted">{{ movieVersion.releasePlace.name }}</span>
-                    <ng-container *ngFor="let technology of movieVersion.technologies; let lastTech = last">
-                        <span class="genre-item highlighted">{{ technology.name }}</span>
-                        <span *ngIf="!lastTech" class="separator"> </span>
-                    </ng-container>
-                    <span *ngIf="!lastMovie" class="separator">,</span>
-                </ng-container>
-            </div>
-            <div class="details-section">
-                <p class="section-title"><strong>Movie Versions:</strong></p>
-                <div *ngFor="let movieVersion of movieDetails.movieVersions" class="movie-version-container">
-                    <div class="version-details">
-                        <span class="genre-item highlighted">{{ movieVersion.releasePlace.name }} :</span>
-                        <ng-container *ngFor="let technology of movieVersion.technologies; let lastTech = last">
-                            <span class="tech-item">{{ technology.name }}</span>
-                            <span *ngIf="!lastTech" class="separator">-</span>
-                        </ng-container>
-                    </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
+<div class="container version-detail-container my-5">
+  <div class="row">
+    <div class="col">
+      <div>
+        <div class="card text-center text-white special-card mb-3 border-0">
+          <div class="card-body">
+            <div class="row align-items-center">
+              <div class="col-md-3 p-4">
+                <h3 class="card-title">{{movieDetails.title}} on {{ selectedMovieVersion.releasePlace.name }}</h3>
+                <div class="platform-detial-container m-1 p-3 align-content-center rounded">
+                  <img [src]="selectedMovieVersion.releasePlace.logoUrl" class="img-fluid">
                 </div>
-            </div>
-    </div>
-
-    <div class="row mt-4">
-        <div class="col">
-            <h3>Trailer</h3>
-            <iframe width="100%" height="315" [src]="movieDetails.trailerUrl | safe" frameborder="1" allowfullscreen></iframe>
+                  <p class="lead"> Released {{ selectedMovieVersion.releasedDate }} </p>
+                </div>
+                <div class="col-md-9">
+                  <p class="lead card-text">Technologies</p>
+                  <div class="row" *ngFor="let technology of selectedMovieVersion.technologies">
+                    <div class="technology-logo-conatiner p-3 my-1 align-content-center rounded">
+                      <img [src]="technology.logoUrl" alt="{{ technology.name }} Logo" class="align-content-center img-technology-logo">
+                    </div>
+                    <div class="col">
+                      <p class="text-start p-1"><strong>{{ technology.name }}</strong></p>
+                      <p class="text-start p-1">{{ technology.description }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
+</div>
+
+
+
+<div class="container">
+  <!-- Trailer -->
+  <div class="row mt-4">
+    <div class="col">
+      <h3>Trailer</h3>
+      <iframe width="100%" height="315" [src]="movieDetails.trailerUrl | safe" frameborder="1" allowfullscreen></iframe>
+    </div>
+  </div>
 </div>

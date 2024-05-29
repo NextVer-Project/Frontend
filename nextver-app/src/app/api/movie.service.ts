@@ -130,4 +130,9 @@ export class MovieService {
     }
     return throwError(errorMessage);
   }
+
+  getMovieInfo(id: number): Observable<MovieDto> {
+    const apiUrl = `${this.url}/${id}`;
+    return this.http.get<MovieDto>(apiUrl);
+  }
 }

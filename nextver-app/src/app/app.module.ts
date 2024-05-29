@@ -25,6 +25,7 @@ import { ManagementComponent } from './components/management/management.componen
 import { MovieAddComponent } from './components/management/movie-add/movie-add.component';
 import { TvshowAddComponent } from './components/management/tvshow-add/tvshow-add.component';
 import { ProductionSearchComponent } from './components/productionbrowser/production-search/production-search.component';
+import { ProductionCardComponent } from './components/home/production-card-component/production-card.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -35,7 +36,8 @@ const appRoutes: Routes = [
   { path: 'details/:category/:id', component: MovieDetailsComponent },
   { path: 'management', component: ManagementComponent },
   { path: 'management/movie/add', component: MovieAddComponent },
-  { path: 'management/tvshow/add', component: TvshowAddComponent }
+  { path: 'management/tvshow/add', component: TvshowAddComponent },
+  { path: 'details/movie/:id', component: MovieDetailsComponent },
 ];
 
 @NgModule({
@@ -58,6 +60,7 @@ const appRoutes: Routes = [
     MovieAddComponent,
     TvshowAddComponent,
     ProductionSearchComponent
+    ProductionCardComponent
   ],
   imports: [
     BrowserModule,

@@ -11,6 +11,7 @@ export interface MovieDetailsDto {
   description: string;
   coverUrl: string;
   trailerUrl: string;
+  viewCounter: number;
   movieUniverses: Array<UniverseForEditDto>;
   movieGenres: Array<GenreForEditDto>;
   releasePlaces: Array<ReleasePlaceForEditDto>;
