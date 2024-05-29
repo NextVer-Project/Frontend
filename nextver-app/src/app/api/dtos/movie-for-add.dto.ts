@@ -1,8 +1,10 @@
 export interface MovieForAddDto {
   title: string;
-  releaseDate: string;
+  releaseDate: Date;
   runtime: number;
   description: string;
-  movieCoverUrl: string;
-  movieTrailerUrl: string;
+  coverUrl: string;
+  trailerUrl: string;
+  genreIds: Array<number>;
+  universeIds: Array<number>;
 }

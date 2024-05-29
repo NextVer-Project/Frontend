@@ -1,3 +1,7 @@
+import { GenreForEditDto } from "./genre-for-edit.dto";
+import { ReleasePlaceForEditDto } from "./release-place-for-edit.dto";
+import { UniverseForEditDto } from "./universe-for-edit.dto";
+
 export interface TvShowDetailsDto {
   id: number;
   title: string;
@@ -6,7 +10,7 @@ export interface TvShowDetailsDto {
   description: string;
   coverUrl: string;
   trailerUrl: string;
-  tvShowUniverses: TvShowUniverse[];
-  tvShowGenres: TvShowGenre[];
-  productionVersions: ProductionVersion[];
+  tvShowUniverses: Array<UniverseForEditDto>;
+  tvShowGenres: Array<GenreForEditDto>;
+  releasePlaces: Array<ReleasePlaceForEditDto>;
 }
