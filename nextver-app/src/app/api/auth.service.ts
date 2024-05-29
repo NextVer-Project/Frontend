@@ -78,7 +78,7 @@ export class AuthService {
       return;
     }
 
-    this.currentUserSource.next({
+    /*this.currentUserSource.next({
       id: parseInt(decoded.nameid, 10),
       name: decoded.unique_name,
       userType: {
@@ -86,6 +86,11 @@ export class AuthService {
         description: decoded.description || '',
         logoUrl: decoded.logoUrl || ''
       }
+    });*/
+    this.currentUserSource.next({
+      id: parseInt(decoded.nameid, 10),
+      name: decoded.unique_name,
+      role: parseInt(decoded.role, 10)
     });
   }
 
