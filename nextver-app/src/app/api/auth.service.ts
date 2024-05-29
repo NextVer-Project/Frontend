@@ -77,16 +77,6 @@ export class AuthService {
       this.user = undefined;
       return;
     }
-
-    /*this.currentUserSource.next({
-      id: parseInt(decoded.nameid, 10),
-      name: decoded.unique_name,
-      userType: {
-        name: decoded.role,
-        description: decoded.description || '',
-        logoUrl: decoded.logoUrl || ''
-      }
-    });*/
     this.currentUserSource.next({
       id: parseInt(decoded.nameid, 10),
       name: decoded.unique_name,
