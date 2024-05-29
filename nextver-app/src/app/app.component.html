@@ -4,5 +4,7 @@
 <!--<div class="content">
   <app-home></app-home>
 </div>-->
-<app-footer class="footer"></app-footer>
 <router-outlet></router-outlet>
+<div *ngIf="router.url !== '/login' && router.url !== '/register'">
+  <app-footer class="footer"></app-footer>
+</div>
