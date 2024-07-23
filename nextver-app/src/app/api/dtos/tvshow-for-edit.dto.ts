@@ -1,4 +1,5 @@
-export interface TvShowForAddDto {
+export interface TvShowForEditDto {
+  id: number;
   title: string;
   description: string;
   coverUrl: string;

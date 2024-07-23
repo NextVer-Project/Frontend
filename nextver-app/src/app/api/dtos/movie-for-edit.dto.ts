@@ -4,6 +4,9 @@ export interface MovieForEditDto {
   releaseDate: string;
   runtime: number;
   description: string;
-  movieCoverUrl: string;
-  movieTrailerUrl: string;
+  coverUrl: string;
+  trailerUrl: string;
+  genreIds: Array<number>;
+  universeIds: Array<number>;
+  movieVersionsIds: Array<number>;
 }

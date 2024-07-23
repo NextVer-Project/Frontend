@@ -1,9 +1,8 @@
-export interface MovieForListDto {
+export interface TvShowForListDto {
   id: number;
   title: string;
   releaseDate: string;
-  runtime: string;
+  runtime: number;
   description: string;
   coverUrl: string;
-  trailerUrl: string;
 }

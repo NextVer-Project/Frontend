@@ -7,7 +7,7 @@ export interface MovieQualityVersionDetailsDto {
   idMovieTVSerieGame: number;
   productionTypeId: number;
   releasePlaceId: number;
-  releaseDate: string;
+  releasedDate: string;
   linkToProductionVersion: string;
   productionType: ProductionTypeForEditDto;
   releasePlace: ReleasePlaceForEditDto;
