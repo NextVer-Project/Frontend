@@ -1,47 +1,148 @@
-<div class="container-custom">
-  <div class="overlay" *ngIf="isFetching">
-    <div class="position-absolute top-50 start-50 translate-middle">
-      <div class="spinner-border" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
+<div class="container-custom" [ngClass]="selectedTheme === 'light' ? 'register-light-mode' : 'register-dark-mode'">
+    <div class="overlay" *ngIf="isFetching">
+        <div class="position-absolute top-50 start-50 translate-middle">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
     </div>
-  </div>
-  <button type="button" class="btn-circle" routerLink="/"><span class="material-icons">arrow_back_ios</span></button>
-  <div class="form-signin position-absolute top-50 start-50 translate-middle">
-    <form class="text-center" #regForm="ngForm" (ngSubmit)="onSubmit(regForm)">
-      <h1 class="h1 mt-2 mb-5 fw-bold">Register</h1>
-      <div class="form-floating mb-5">
-        <input type="text"
-               class="form-control rounded-0"
-               id="username"
-               placeholder="Username"
-               ngModel
-               name="username"
-               required>
-        <label for="username">Username</label>
-      </div>
-      <div class="form-floating mb-5">
-        <input type="password"
-               class="form-control rounded-0"
-               id="password"
-               placeholder="Password"
-               ngModel name="password"
-               required
-               minlength="8">
-        <label for="password">Password</label>
-      </div>
-      <div class="form-floating mb-5">
-        <input type="email"
-               class="form-control  rounded-0"
-               id="email"
-               placeholder="name@example.com"
-               ngModel name="email"
-               required
-               email>
-        <label for="email">Email address</label>
-      </div>
-      <button class="btn-base btn-black w-100" type="submit" [disabled]="!regForm.valid">Register</button>
-    </form>
-    <p class="mt-2 mb-2 text-muted text-center"> Already registered? <a routerLink="../login"><b>Sign in</b></a></p>
-  </div>
+    <button type="button" class="btn-circle" routerLink="/"><span class="material-icons arrow">arrow_back_ios</span></button>
+    <div class="form-register rounded-10 position-absolute top-50 start-50 translate-middle">
+        <form class="text-center form-columns" #regForm="ngForm" (ngSubmit)="onSubmit(regForm)">
+            <h1 class="h1 mt-2 mb-5 fw-bold">Register</h1>
+            <div class="form-row">
+                <div class="form-col">
+                    <div class="form-floating mb-3">
+                        <input type="text"
+                               class="form-control rounded-10"
+                               id="username"
+                               placeholder="Username"
+                               ngModel
+                               name="username"
+                               #username="ngModel"
+                               required>
+                        <label for="username">Username</label>
+                        <div *ngIf="username.invalid || username.touched || formSubmitted">
+                            <small class="text-danger" *ngIf="username.errors?.required">Username is required.</small>
+                            <small class="text-success" *ngIf="username.valid">Username is valid.</small>
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password"
+                               class="form-control rounded-10"
+                               id="password"
+                               placeholder="Password"
+                               ngModel
+                               name="password"
+                               #password="ngModel"
+                               required
+                               minlength="8"
+                               pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&]).{8,}$">
+                        <label for="password">Password</label>
+                        <div *ngIf="password.invalid || password.touched || formSubmitted">
+                            <small class="text-danger" *ngIf="password.errors?.required">Password is required.</small>
+                            <small class="text-danger" *ngIf="password.errors?.minlength">Password must be at least 8 characters long.</small>
+                            <small class="text-danger" *ngIf="password.errors?.pattern && !password.errors?.minlength">Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.</small>
+                            <small class="text-success" *ngIf="password.valid">Password is valid.</small>
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="email"
+                               class="form-control rounded-10"
+                               id="email"
+                               placeholder="name@example.com"
+                               ngModel
+                               name="email"
+                               #email="ngModel"
+                               required
+                               pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
+                        <label for="email">Email address</label>
+                        <div *ngIf="email.invalid || email.touched || formSubmitted">
+                            <small class="text-danger" *ngIf="email.errors?.required">Email is required.</small>
+                            <small class="text-danger" *ngIf="email.errors?.pattern">Email must be a valid email address (e.g., user&#64;example.com).</small>
+                            <small class="text-success" *ngIf="email.valid">Email is valid.</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-floating mb-3">
+                        <input type="text"
+                               class="form-control rounded-10"
+                               id="firstName"
+                               placeholder="First Name"
+                               ngModel
+                               name="firstName"
+                               #firstName="ngModel"
+                               required>
+                        <label for="firstName">First Name</label>
+                        <div *ngIf="firstName.invalid || firstName.touched || formSubmitted">
+                            <small class="text-danger" *ngIf="firstName.errors?.required">First Name is required.</small>
+                            <small class="text-success" *ngIf="firstName.valid">First Name is valid.</small>
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text"
+                               class="form-control rounded-10"
+                               id="lastName"
+                               placeholder="Last Name"
+                               ngModel
+                               name="lastName"
+                               #lastName="ngModel"
+                               required>
+                        <label for="lastName">Last Name</label>
+                        <div *ngIf="lastName.invalid || lastName.touched || formSubmitted">
+                            <small class="text-danger" *ngIf="lastName.errors?.required">Last Name is required.</small>
+                            <small class="text-success" *ngIf="lastName.valid">Last Name is valid.</small>
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text"
+                               class="form-control rounded-10"
+                               id="city"
+                               placeholder="City"
+                               ngModel
+                               name="city"
+                               #city="ngModel"
+                               required>
+                        <label for="city">City</label>
+                        <div *ngIf="city.invalid || city.touched || formSubmitted">
+                            <small class="text-danger" *ngIf="city.errors?.required">City is required.</small>
+                            <small class="text-success" *ngIf="city.valid">City is valid.</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-col">
+                    <div class="form-floating mb-3">
+                        <input type="text"
+                               class="form-control rounded-10"
+                               id="country"
+                               placeholder="Country"
+                               ngModel
+                               name="country"
+                               #country="ngModel"
+                               required>
+                        <label for="country">Country</label>
+                        <div *ngIf="country.invalid || country.touched || formSubmitted">
+                            <small class="text-danger" *ngIf="country.errors?.required">Country is required.</small>
+                            <small class="text-success" *ngIf="country.valid">Country is valid.</small>
+                        </div>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input type="checkbox"
+                               class="form-check-input"
+                               id="notificationsAgreement"
+                               [(ngModel)]="notificationsAgreement"
+                               name="notificationsAgreement"
+                               #notificationAgreement="ngModel">
+                        <label class="form-check-label" for="notificationsAgreement">
+                            I agree to receive notifications
+                        </label>
+                        
+                    </div>
+                </div>
+            </div>
+            <button class="btn-base btn-black w-100" type="submit" [disabled]="!regForm.valid">Register</button>
+        </form>
+        <p class="mt-2 mb-2 text-muted text-center">Already registered? <a routerLink="../login"><b>Sign in</b></a></p>
+    </div>
 </div>

@@ -1,17 +1,138 @@
-.form-signin {
-  background-color: white;
-  width: 100%;
-  max-width: 370px;
-  padding: 40px;
-  margin: auto;
-}
-
 a {
   color: black;
   transition: color 0.5s;
   text-decoration: none;
 }
 
-  a:hover {
-    color: darkgray;
-  } 
+a:hover {
+  color: darkgray;
+}
+
+.container-custom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.form-register {
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 20px;
+  width: 100%;
+  padding: 60px;
+}
+
+.form-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; 
+}
+
+.form-col {
+  flex: 1 1 30%; 
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.form-floating {
+  margin-bottom: 15px;
+}
+
+.btn-base {
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.register-dark-mode .btn-circle {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: black;
+  border: 2px solid red;
+  border-radius: 50%;
+  padding: 10px;
+  box-shadow: 0 2px 15px rgba(255,11,0,1.1);
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.register-light-mode .btn-circle {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: #fff;
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,1.1);
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.btn-circle span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.h1 {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.form-register input {
+    border-radius: 20px;
+}
+
+.register-light-mode .form-register {
+  background-color: white;
+  box-shadow: rgb(38, 57, 77) 0px 10px 40px -15px;
+  border: solid 1px #ccc;
+}
+
+.register-light-mode a {
+  color: black;
+}
+
+.register-light-mode a:hover {
+  color: lightgray;
+}
+
+.register-light-mode .form-register input:focus {
+  border-color: lightgray;
+  box-shadow: rgb(38, 57, 77) 0px 0px 20px 0px;
+}
+
+.register-dark-mode .form-register {
+  background-color: black;
+  box-shadow: darkred 0px 0px 30px 0px;
+  border: solid 3px darkred;
+}
+
+.register-dark-mode .form-register input {
+  background-color: #101014;
+  color: white;
+}
+
+.register-dark-mode .form-register a {
+  color: white;
+}
+
+.register-dark-mode .form-register a:hover {
+  color: darkred;
+}
+
+.register-dark-mode .form-register input:focus {
+  border: solid 3px red;
+  box-shadow: darkred 0px 0px 30px 0px;
+}
+
+.register-dark-mode .btn-circle .arrow {
+  color: white;
+}
