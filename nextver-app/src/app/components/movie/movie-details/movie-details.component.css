@@ -73,15 +73,18 @@
   max-width: 140px;
 }
 
-.platform {
+.dark-mode .platform {
   background: linear-gradient(180deg, #020202, #76011e)
+}
+
+.light-mode .platform {
+  background: linear-gradient(180deg, grey, black)
 }
 
 .technology-logo-conatiner {
   height: 80px;
   max-width: 180px;
-  background-color: #ffffff;
-  
+  background-color: #ffffff; 
 }
 
 .img-technology-logo {
@@ -93,9 +96,14 @@
   background-color: #2f2f2f00;
 }
 
-.special-card {
-  background-color: #00000000;
+.dark-mode .special-card {
+  background-color: #202020;
   box-shadow: inset 0px 0px 0px 2px rgba(255, 0, 63, 1), 0px 0px 16px 8px rgba(167, 11, 45, 1);
+}
+
+.light-mode .special-card {
+  background-color: rgb(245, 245, 245);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 .platform-detial-container {
@@ -103,4 +111,65 @@
   max-width: 275px;
   background-color: #ffffff;
   border: 1px solid #000000;
+}
+
+.video-container {
+  position: relative;
+  width: 80%; 
+  padding-bottom: 45%; 
+  height: 0;
+  overflow: hidden;
+  margin: 30px auto; 
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.title-rating-container {
+
+}
+
+.rating-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #000000;
+  border-color: gray;
+}
+
+.rating-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
+}
+
+.rating-value {
+  font-size: 1.6em;
+}
+
+.rating-count {
+  font-size: 0.8em;
+  color: #B0B0B0;
+  display: flex;
+  align-items: center;
+  gap: 2px; 
+}
+
+.rating-text {
+  margin-left: 5px;
+}
+
+.star-icon {
+  color: #FFD700; 
+  font-size: 3.6em;
+}
+
+.title-rating-container h2 {
+  margin: 0;
 }

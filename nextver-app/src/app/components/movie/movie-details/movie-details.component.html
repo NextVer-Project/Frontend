@@ -1,91 +1,108 @@
-<!-- Okładka -->
-<div class="container-fluid under-header-content" *ngIf="movieDetails" id="cover-background">
-  <div class="row justify-content-md-center">
-    <div class="col-md-2 d-flex flex-column align-items-end">
-      <img [src]="movieDetails.coverUrl" alt="{{ movieDetails.title }} Cover" class="img-thumbnail-custom rounded">
-    </div>
-    <div class="col-md-5 mt-4 d-flex align-items-start flex-column">
-      <div class="p-1"><h2>{{ movieDetails.title }}</h2></div>
-      <div *ngIf="movieDetails.movieUniverses && movieDetails.movieUniverses.length > 0">
-        <div class="mt-2 px-1"><strong>Universes</strong></div>
-        <ng-container *ngFor="let universe of movieDetails.movieUniverses; let last = last">
-          <span class="px-1">{{ universe.name }}</span>{{ !last ? ' • ' : '' }}
-        </ng-container>
-      </div>
-      <div>
-        <div class="mt-2 px-1"><strong>Genre</strong></div>
-        <ng-container *ngFor="let genre of movieDetails.movieGenres; let last = last">
-          <span class="px-1">{{ genre.name }}</span>{{ !last ? ' • ' : '' }}
-        </ng-container>
-      </div>
-      <div class="lead mt-auto mb-5 p-1"><p> {{ movieDetails.description }}</p></div>
-    </div>
-    <div class="col-md-2 mt-4 d-flex align-items-start flex-column">
-      <div class="p-1"><h2>Details</h2></div>
-      <div class="mt-2 px-1"><strong>Release Date</strong></div>
-      <div class="px-1">{{ movieDetails.releaseDate }}</div>
-      <div class="mt-2 px-1"><strong>Duration</strong></div>
-      <div class="px-1">{{ movieDetails.runtime }}</div>
-      <div class="mt-2 px-1"><strong>Views</strong></div>
-      <div class="px-1">{{ movieDetails.viewCounter }}</div>
-    </div>
-  </div>
-</div>
-<!-- Available on -->
-<div class="row justify-content-md-center">
-  <div class="col d-flex align-items-center flex-column platform">
-    <div class="mt-2 px-1"><h3>Available on</h3></div>
-    <div class="d-flex flex-wrap">
-      <ng-container *ngFor="let version of movieDetails.movieVersions">
-        <div class="img-platform-container m-2 p-3 align-content-center rounded" (click)="selectMovieVersion(version)" style="cursor: pointer;">
-          <img [src]="version.releasePlace.logoUrl" alt="{{ version.releasePlace.name }} Cover" class="img-platform-logo">
+<div class="container-fluid under-header-content" *ngIf="movieDetails" id="cover-background" [ngClass]="selectedTheme === 'light' ? 'text-black' : 'text-white'">
+    <div class="row justify-content-md-center">
+        <div class="col-md-2 d-flex flex-column align-items-end">
+            <img [src]="movieDetails.coverUrl || 'default-cover.jpg'" alt="{{ movieDetails.title || 'Title not available' }} Cover" class="img-thumbnail-custom rounded">
         </div>
-      </ng-container>
-    </div>
-  </div>
-</div>
-<div class="container version-detail-container my-5">
-  <div class="row">
-    <div class="col">
-      <div>
-        <div class="card text-center text-white special-card mb-3 border-0">
-          <div class="card-body">
-            <div class="row align-items-center">
-              <div class="col-md-3 p-4">
-                <h3 class="card-title">{{movieDetails.title}} on {{ selectedMovieVersion.releasePlace.name }}</h3>
-                <div class="platform-detial-container m-1 p-3 align-content-center rounded">
-                  <img [src]="selectedMovieVersion.releasePlace.logoUrl" class="img-fluid">
+        <div class="col-md-5 mt-4 d-flex align-items-start flex-column">
+            <div class="title-rating-container">
+                <div class="p-2">
+                    <h2>{{ movieDetails.title || 'Title not available' }}</h2>
                 </div>
-                  <p class="lead"> Released {{ selectedMovieVersion.releaseDate }} </p>
-                </div>
-                <div class="col-md-9">
-                  <p class="lead card-text">Technologies</p>
-                  <div class="row" *ngFor="let technology of selectedMovieVersion.technologies">
-                    <div class="technology-logo-conatiner p-3 my-1 align-content-center rounded">
-                      <img [src]="technology.logoUrl" alt="{{ technology.name }} Logo" class="align-content-center img-technology-logo">
+            </div>
+            <div class="rating-container px-2 py-1 rounded">
+                <i class="material-icons star-icon">star</i>
+                <div class="rating-info">
+                    <div class="rating-value">
+                        {{ movieDetails.averageRating || 0.0 }}
                     </div>
-                    <div class="col">
-                      <p class="text-start p-1"><strong>{{ technology.name }}</strong></p>
-                      <p class="text-start p-1">{{ technology.description }}</p>
+                    <div class="rating-count">
+                        {{ movieDetails.ratingCount || 0 }}
+                        <div class="rating-text">
+                            Rating count
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div>
-          </div>
+            </div>
+            <div *ngIf="movieDetails.movieUniverses && movieDetails.movieUniverses.length > 0">
+                <div class="mt-3 px-1">
+                    <strong>Universes</strong>
+                </div>
+                <ng-container *ngFor="let universe of movieDetails.movieUniverses; let last = last">
+                    <span class="px-1">{{ universe.name }}</span>{{ !last ? ' • ' : '' }}
+                </ng-container>
+            </div>
+            <div *ngIf="movieDetails.movieGenres && movieDetails.movieGenres.length > 0">
+                <div class="mt-2 px-1"><strong>Genre</strong></div>
+                <ng-container *ngFor="let genre of movieDetails.movieGenres; let last = last">
+                    <span class="px-1">{{ genre.name }}</span>{{ !last ? ' • ' : '' }}
+                </ng-container>
+            </div>
+            <div class="lead mt-2 mb-5 p-1"><p>{{ movieDetails.description || 'Description not available' }}</p></div>
         </div>
-      </div>
+        <div class="col-md-2 mt-4 d-flex align-items-start flex-column">
+            <div class="p-1"><h2>Details</h2></div>
+            <div class="mt-2 px-1"><strong>Release Date</strong></div>
+            <div class="px-1">{{ movieDetails.releaseDate || 'N/A' }}</div>
+            <div class="mt-2 px-1"><strong>Duration</strong></div>
+            <div class="px-1">{{ movieDetails.runtime || 'N/A' }}</div>
+            <div class="mt-2 px-1"><strong>Views</strong></div>
+            <div class="px-1">{{ movieDetails.viewCounter || 0 }}</div>
+
+        </div>
     </div>
-  </div>
 </div>
-
-
-
-<div class="container">
-  <!-- Trailer -->
-  <div class="row mt-4">
-    <div class="col">
-      <h3>Trailer</h3>
-      <iframe width="100%" height="315" [src]="movieDetails.trailerUrl | safe" frameborder="1" allowfullscreen></iframe>
+<div class="row justify-content-md-center" [ngClass]="selectedTheme === 'light' ? 'light-mode text-black' : 'dark-mode text-white'" *ngIf="movieDetails.movieVersions && movieDetails.movieVersions.length > 0">
+    <div class="col d-flex align-items-center flex-column platform">
+        <div class="mt-2 px-1"><h3>Available on</h3></div>
+        <div class="d-flex flex-wrap">
+            <ng-container *ngFor="let version of movieDetails.movieVersions">
+                <div class="img-platform-container m-2 p-3 align-content-center rounded" (click)="selectMovieVersion(version)" style="cursor: pointer;">
+                    <img [src]="version.releasePlace?.logoUrl || 'default-platform-logo.jpg'" alt="{{ version.releasePlace?.name || 'Platform' }} Cover" class="img-platform-logo">
+                </div>
+            </ng-container>
+        </div>
     </div>
-  </div>
+</div>
+<div class="container version-detail-container my-5" *ngIf="selectedMovieVersion" [ngClass]="selectedTheme === 'light' ? 'light-mode' : 'dark-mode'">
+    <div class="row">
+        <div class="col">
+            <div class="card text-center special-card mb-3 border-0" [ngClass]="selectedTheme === 'light' ? 'text-black' : 'text-white'">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-md-3 p-4">
+                            <h3 class="card-title">{{movieDetails.title}} on {{ selectedMovieVersion.releasePlace?.name }}</h3>
+                            <div class="platform-detial-container m-1 p-3 align-content-center rounded">
+                                <img [src]="selectedMovieVersion.releasePlace?.logoUrl || 'default-platform-logo.jpg'" class="img-fluid">
+                            </div>
+                            <p class="lead"> Released {{ selectedMovieVersion.releasedDate }} </p>
+                        </div>
+                        <div class="col-md-9">
+                            <p class="lead card-text">Technologies</p>
+                            <div class="row" *ngFor="let technology of selectedMovieVersion.technologies">
+                                <div class="technology-logo-conatiner p-3 my-1 align-content-center rounded">
+                                    <img [src]="technology.logoUrl || 'default-technology-logo.jpg'" alt="{{ technology.name }} Logo" class="align-content-center img-technology-logo">
+                                </div>
+                                <div class="col">
+                                    <p class="text-start p-1"><strong>{{ technology.name }}</strong></p>
+                                    <p class="text-start p-1">{{ technology.description }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container version-detail-container my-5" *ngIf="movieDetails.trailerUrl" [ngClass]="selectedTheme === 'light' ? 'light-mode' : 'dark-mode'">
+    <div class="card text-center special-card p-1 m-1 border-0" [ngClass]="selectedTheme === 'light' ? 'text-black' : 'text-white'">
+        <div class="card-body">
+            <h2 class="card-title">{{movieDetails.title}} Trailer</h2>
+
+            <p class="lead">Watch official trailer!</p>
+            <div class="video-container">
+                <iframe class="rounded" [src]="movieDetails.trailerUrl | safe" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
 </div>

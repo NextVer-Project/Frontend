@@ -16,13 +16,15 @@ import { MovieQualityVersionDetailsDto } from '../../../api/dtos/movie-quality-v
 import { ProductionTypeForEditDto } from '../../../api/dtos/production-type-for-edit.dto';
 import { DatePipe } from '@angular/common';
 import { MovieDto } from '../../../api/dtos/movie.dto';
+import { RatingService } from '../../../api/rating.service';
+import { UIPresentationConfigService } from '../../../services/ui-presentation-config.service';
 
 @Component({
   selector: 'app-movie-details',
   templateUrl: './movie-details.component.html',
   styleUrls: ['./movie-details.component.css']
 })
-export class MovieDetailsComponent implements OnInit, AfterViewInit, OnDestroy {
+export class MovieDetailsComponent implements OnInit, OnDestroy {
   public selectedProduction: ProductionDto | undefined;
   public movieDetails: MovieDetailsDto | undefined;
   public movieVersionDetails: MovieQualityVersionDetailsDto | undefined;
@@ -32,47 +34,42 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit, OnDestroy {
   productionVersionModal: Modal | undefined;
   selectedMovieVersion: MovieQualityVersionDetailsDto | undefined;
   
-  constructor(private router: Router, private commonService: CommonService, private authService: AuthService, private movieService: MovieService, private releasePlace: ReleasePlaceService, private productionType: ProductionTypeService, private datePipe: DatePipe, private route: ActivatedRoute) {
+  constructor(private router: Router, private commonService: CommonService,
+    private authService: AuthService, private movieService: MovieService,
+    private releasePlace: ReleasePlaceService, private productionType: ProductionTypeService,
+    private datePipe: DatePipe, private route: ActivatedRoute, private ratingService: RatingService,
+    private uiPresentationConfigService: UIPresentationConfigService) {
     this.selectedProduction = commonService.selectedProduction;
+  }
+  get selectedTheme() {
+    return this.uiPresentationConfigService.getSelectedTheme();
   }
 
   ngOnInit(): void {
     const movieId =+ this.route.snapshot.paramMap.get('id');
     this.loadMovieDetails(movieId);
-
-    console.log('Trailer URL:', this.movieDetails?.trailerUrl);
-
-    this.playTrailer();
     this.resizeScreen();
-  }
-
-  ngAfterViewInit(): void {
-    this.loadBackground();
   }
 
   ngOnDestroy(): void {
 
   }
 
-  playTrailer(): void {
-    if (this.movieDetails && this.movieDetails.trailerUrl) {
-      window.open(this.movieDetails.trailerUrl, '_blank');
-    }
-  }
-
-  openTrailer(): void {
-    if (this.movieDetails && this.movieDetails.trailerUrl) {
-      window.open(this.movieDetails.trailerUrl, '_blank');
-    }
-  }
-
-  loadBackground(): void {
+  private loadBackground(): void {
     const background = document.getElementById('cover-background');
-    background.style.background = 'linear-gradient(180deg, #000000cc, #000000ee), url("' + this.movieDetails.coverUrl + '")';
-    background.style.backgroundPosition = 'center';
-    background.style.backgroundSize = 'cover';
-    background.style.backgroundRepeat = 'no-repeat';
-    background.style.backgroundColor = 'black';
+    if (this.selectedTheme === 'light') {
+      background.style.background = 'linear-gradient(180deg, #ffffffcc, grey), url("' + this.movieDetails.coverUrl + '")';
+      background.style.backgroundPosition = 'center';
+      background.style.backgroundSize = 'cover';
+      background.style.backgroundRepeat = 'no-repeat';
+      background.style.backgroundColor = 'white';
+    } else {      
+      background.style.background = 'linear-gradient(180deg, #000000cc, #000000ee), url("' + this.movieDetails.coverUrl + '")';
+      background.style.backgroundPosition = 'center';
+      background.style.backgroundSize = 'cover';
+      background.style.backgroundRepeat = 'no-repeat';
+      background.style.backgroundColor = 'black';
+    }    
   }
 
   private loadMovieDetails(productionId: number): void {
@@ -85,11 +82,33 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit, OnDestroy {
       coverUrl: "",
       trailerUrl: "",
       viewCounter: 0,
+      averageRating: 0,
+      ratingCount: 0,
       movieUniverses: [],
       movieGenres: [],
       releasePlaces: [],
       movieVersions: [],
     }
+
+    this.movieService.getMovieInfo(productionId).subscribe(
+      (response: MovieDto) => {
+        this.movieDetails.title = response.title;
+        this.movieDetails.releaseDate = this.datePipe.transform(response.releaseDate, 'dd.MM.yyyy');
+        this.movieDetails.description = response.description;
+        this.movieDetails.coverUrl = response.coverUrl;
+        this.movieDetails.viewCounter = response.viewCounter;
+
+        const runtimeMinutes = parseInt(response.runtime, 10);
+        const hours = Math.floor(runtimeMinutes / 60);
+        const minutes = runtimeMinutes % 60;
+        this.movieDetails.runtime = hours + "h " + minutes + " min";
+
+        this.loadBackground();
+      },
+      error => {
+        console.error('There was an error while loading movie release places details:', error);
+      }
+    );
 
     this.movieService.getMovieGenres(productionId).subscribe(
       (response: Array<GenreForEditDto>) => {
@@ -152,38 +171,36 @@ export class MovieDetailsComponent implements OnInit, AfterViewInit, OnDestroy {
             }
           )
         );
-
-        this.selectedMovieVersion = this.movieDetails.movieVersions[0];
-        this.selectedMovieVersion.releaseDate = this.datePipe.transform(this.selectedMovieVersion.releaseDate, 'dd MMM yyyy')
+        this.selectMovieVersion(this.movieDetails.movieVersions[0]);
       },
       error => {
         console.error('There was an error while loading movie version details:', error);
       }
     );
 
-    this.movieService.getMovieInfo(productionId).subscribe(
-      (response: MovieDto) => {
-        this.movieDetails.title = response.title;
-        this.movieDetails.releaseDate = this.datePipe.transform(response.releaseDate, 'dd.MM.yyyy')
-        this.movieDetails.description = response.description;
-        this.movieDetails.coverUrl = response.coverUrl;
-        this.movieDetails.viewCounter = response.viewCounter;
-
-        const runtimeMinutes = parseInt(response.runtime, 10);
-        const hours = Math.floor(runtimeMinutes / 60);
-        const minutes = runtimeMinutes % 60;
-        this.movieDetails.runtime = hours + "h " + minutes + " min";
+    this.ratingService.getMovieRating(productionId).subscribe(
+      (response: number) => {
+        this.movieDetails.averageRating = parseFloat(response.toFixed(2));
       },
       error => {
         console.error('There was an error while loading movie release places details:', error);
       }
     );
+
+    this.ratingService.getMovieRatingCount(productionId).subscribe(
+      (response: number) => {
+        this.movieDetails.ratingCount = response;
+      },
+      error => {
+        console.error('There was an error while loading movie rating count details:', error);
+      }
+    );
   }
 
-  selectMovieVersion(version: MovieQualityVersionDetailsDto): void {
+  public selectMovieVersion(version: MovieQualityVersionDetailsDto): void {
     this.selectedMovieVersion = version;
-    const date = this.datePipe.transform(version.releaseDate, 'dd MMM yyyy');
-    this.selectedMovieVersion.releaseDate = date;
+    const date = this.datePipe.transform(version.releasedDate, 'dd MMM yyyy');
+    this.selectedMovieVersion.releasedDate = date;
   }
 
   openModal() {
