@@ -32,7 +32,7 @@
 .login-dark-mode .form-signin {
   background-color: black;
   box-shadow: darkred 0px 0px 30px 0px;
-  border: none;
+  border: solid 2px red;
 }
 
 .login-dark-mode .form-signin input {
@@ -49,7 +49,41 @@
 }
 
 .login-dark-mode .form-signin input:focus {
-  border: solid 3px green;
-  border-color: red;
+  border: solid 3px red;
   box-shadow: darkred 0px 0px 30px 0px;
+}
+
+.login-dark-mode .btn-circle {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: black;
+  border: 2px solid red;
+  border-radius: 50%;
+  padding: 10px;
+  box-shadow: 0 2px 15px rgba(255,11,0,1.1);
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.login-light-mode .btn-circle {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: #fff;
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,1.1);
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.btn-circle span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login-dark-mode .btn-circle .arrow {
+  color: white;
 }

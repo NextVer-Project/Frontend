@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { AuthService } from '../../api/auth.service';
 import { Router } from '@angular/router';
 import { UIPresentationConfigService } from '../../services/ui-presentation-config.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -15,7 +16,9 @@ export class LoginComponent {
 
   public isFetching = false;
 
-  constructor(private authService: AuthService, public router: Router, private uiPresentationConfigService: UIPresentationConfigService) { }
+  constructor(private authService: AuthService, public router: Router,
+    private uiPresentationConfigService: UIPresentationConfigService,
+    private toastr: ToastrService,) { }
 
   get selectedTheme() {
     return this.uiPresentationConfigService.getSelectedTheme();
@@ -37,11 +40,12 @@ export class LoginComponent {
 
     this.authService.login(username, password).subscribe(
       resData => {
+        this.toastr.success('Your are now logged in!', 'Success!');
         this.router.navigate(['/']);
         this.isFetching = false;
       },
       errorMessage => {
-        console.log(errorMessage);
+        this.toastr.error(errorMessage, 'Error');
         this.isFetching = false;
       }
     );
