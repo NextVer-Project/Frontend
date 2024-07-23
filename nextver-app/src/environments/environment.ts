@@ -13,12 +13,20 @@ export enum ApiPaths {
   TvShow = '/tvshow',
   Game = '/game',
   User = '/user',
+  UserType = '/usertype',
+  UserCollectionType = '/usercollectiontype',
   ReleasePlace = '/releaseplace',
+  ReleasePlaceType = '/releaseplacetype',
+  RatingCategory = '/ratingcategory',
+  NotificationType ='/notificationtype',
   ProductionType = '/productiontype',
+  ProductionVersion = '/productionversion',
   Technology = '/technology',
+  TechnologyType = '/technologytype',
   Management = '/management',
   Universe = '/universe',
   Genre = '/genre',
+  Rating = '/rating',
 }
 
 /*
