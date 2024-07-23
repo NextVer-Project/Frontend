@@ -1,11 +1,11 @@
 <div>
     <section class="exclude-conic-animation">
-        <div class="welcome-container rounded-4 pt-2">
+        <div class="rounded-4 pt-2" [ngClass]="(selectedTheme === 'light' ? 'welcome-container-light' : 'welcome-container-dark')">
             <p *ngIf="fetchFailed && !isFetching">Failed to load any productions, please try refreshing the page or contact our support.</p>
             <div class="mt-4 border-0" *ngIf="!fetchFailed && !isFetching">
                 <div class="row" *ngIf="productions !== undefined && productions.length > 0 && !isFetching">
-                    <h1 class="text-white align-content-start"> Browse recent Movies </h1>
-                    <h2 class="text-white lead"> Explore video and sound technologies with other technical details of <strong> {{ movieCount }} </strong> movies</h2>
+                    <h1 class="align-content-start" [ngClass]="{'text-white': selectedTheme === 'dark', 'text-dark': selectedTheme === 'light'}"> Browse recent Movies </h1>
+                    <h2 class="lead" [ngClass]="{'text-white': selectedTheme === 'dark', 'text-dark': selectedTheme === 'light'}"> Explore video and sound technologies with other technical details of <strong> {{ movieCount }} </strong> movies</h2>
                     <div class="d-flex justify-content-center">
                         <app-production-card class="d-inline-flex p-3" *ngFor="let production of productions" [production]="production"></app-production-card>
                     </div>
@@ -20,15 +20,15 @@
     </section>
 
     <section [ngClass]="(selectedTheme === 'light' ? 'section-light' : 'section-dark') + (selectedAnimation ? ' conic' : '')" id="sec1">
-        <div class="home-container rounded-4 pt-2">
+        <div class="rounded-4 pt-2" [ngClass]="(selectedTheme === 'light' ? 'home-container-light' : 'home-container-dark')">
             <p *ngIf="fetchFailed && !isFetching">Failed to load any productions, please try refreshing the page or contact our support.</p>
             <div class="mt-4 border-0" *ngIf="!fetchFailed && !isFetching">
                 <div class="row" *ngIf="productions !== undefined && productions.length > 0 && !isFetching">
-                    <h1 class="text-white align-content-start"> State of the art technologies </h1>
-                    <h2 class="text-white lead"> Wheater it is Movie, TV Show or Video Game, you will find all details</h2>
+                    <h1 class="align-content-start" [ngClass]="{'text-white': selectedTheme === 'dark', 'text-dark': selectedTheme === 'light'}"> State of the art technologies </h1>
+                    <h2 class="lead" [ngClass]="{'text-white': selectedTheme === 'dark', 'text-dark': selectedTheme === 'light'}"> Wheater it is Movie, TV Show or Video Game, you will find all details</h2>
                     <div class="d-flex align-content-start flex-wrap justify-content-center">
                         <div class="m-1" *ngFor="let technology of technologies">
-                            <div class="technology-logo-conatiner p-3 my-1 align-content-center rounded">
+                            <div class="p-3 my-1 align-content-center rounded" [ngClass]="(selectedTheme === 'light' ? 'technology-logo-conatiner-light' : 'technology-logo-conatiner-dark')">
                                 <img [src]="technology.logoUrl" alt="{{ technology.name }} Logo" class="align-content-center img-technology-logo">
                             </div>
                         </div>
@@ -43,21 +43,101 @@
         </div>
     </section>
     <section [ngClass]="(selectedTheme === 'light' ? 'section-light' : 'section-dark') + (selectedAnimation ? ' conic' : '')" id="sec2">
-        <h1>Section Three</h1>
-    </section>
-    <section [ngClass]="(selectedTheme === 'light' ? 'section-light' : 'section-dark') + (selectedAnimation ? ' conic' : '')" id="sec3">
-        <h1>Section Four</h1>
-    </section>
-    <section [ngClass]="(selectedTheme === 'light' ? 'section-light' : 'section-dark') + (selectedAnimation ? ' conic' : '')" id="sec4">
-        <h1>Section Five</h1>
-    </section>
-</div>
+        <div class="rounded-4 pt-2" [ngClass]="(selectedTheme === 'light' ? 'home-container-light' : 'home-container-dark')">
+            <div class="container-fluid my-5">
+                <h1 class="text-center" [ngClass]="{'text-white': selectedTheme === 'dark', 'text-dark': selectedTheme === 'light'}">NextVer Features</h1>
+                <h2 class="text-center lead" [ngClass]="{'text-white': selectedTheme === 'dark', 'text-dark': selectedTheme === 'light'}">Best experience for movie fans!</h2>
+                <div class="row d-flex justify-content-center align-items-stretch mt-5 mb-5">
+                    <!-- Card 1 -->
+                    <div class="col-md-4 mb-4 d-flex">
+                        <div class="card" [ngClass]="{'features-card-dark': selectedTheme === 'dark', 'features-card-light': selectedTheme === 'light', 'flex-fill': true}">
+                            <div class="card-body" [ngClass]="{'text-white': selectedTheme === 'dark', 'text-dark': selectedTheme === 'light'}">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <span class="badge bg-secondary">1</span>
+                                    <i class="material-icons" style="font-size: 40px;">search</i>
+                                </div>
+                                <h5 class="card-title mt-2">Discover Movies, Series, and Games</h5>
+                                <p class="card-text">NextVer revolutionizes your entertainment search and tracking experience by offering comprehensive tools and features.</p>
+                            </div>
+                        </div>
+                    </div>
 
-<div>to get a really cool snapping effect - with CSS only!</div>
+                    <!-- Card 2 -->
+                    <div class="col-md-4 mb-4 d-flex">
+                        <div class="card" [ngClass]="{'features-card-dark': selectedTheme === 'dark', 'features-card-light': selectedTheme === 'light', 'flex-fill': true}">
+                            <div class="card-body" [ngClass]="{'text-white': selectedTheme === 'dark', 'text-dark': selectedTheme === 'light'}">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <span class="badge bg-secondary">2</span>
+                                    <i class="material-icons" style="font-size: 40px;">find_in_page</i>
+                                </div>
+                                <h5 class="card-title mt-2">Advanced Search</h5>
+                                <p class="card-text">Find movies, series, and games in one place with our powerful search engine, designed to deliver fast and accurate results.</p>
+                            </div>
+                        </div>
+                    </div>
 
-<div>
-    <app-production-search></app-production-search>
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ut nibh ligula. Fusce et metus nec augue pulvinar tempus sed at turpis. Pellentesque sapien metus, consectetur non lorem nec, tempor fringilla dui. Pellentesque pellentesque erat at ante volutpat, et finibus felis convallis. Quisque fermentum ante at ante tincidunt fermentum eget at orci. Curabitur sed enim ut lacus rutrum dapibus. Integer non pretium ante, nec eleifend leo. Mauris fringilla, felis vitae eleifend sodales, odio nunc placerat dolor, vitae volutpat lorem tortor at ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ligula arcu, dictum in bibendum eu, tempus eu mauris.
-    </p>
+                    <!-- Card 3 -->
+                    <div class="col-md-4 mb-4 d-flex">
+                        <div class="card" [ngClass]="{'features-card-dark': selectedTheme === 'dark', 'features-card-light': selectedTheme === 'light', 'flex-fill': true}">
+                            <div class="card-body" [ngClass]="{'text-white': selectedTheme === 'dark', 'text-dark': selectedTheme === 'light'}">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <span class="badge bg-secondary">3</span>
+                                    <i class="material-icons" style="font-size: 40px;">track_changes</i>
+                                </div>
+                                <h5 class="card-title mt-2">Track Everything</h5>
+                                <p class="card-text">Stay updated with the latest releases and never miss out on new movies, series, or games again.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row d-flex justify-content-center align-items-stretch mb-5">
+                    <!-- Card 4 -->
+                    <div class="col-md-4 mb-4 d-flex">
+                        <div class="card" [ngClass]="{'features-card-dark': selectedTheme === 'dark', 'features-card-light': selectedTheme === 'light', 'flex-fill': true}">
+                            <div class="card-body" [ngClass]="{'text-white': selectedTheme === 'dark', 'text-dark': selectedTheme === 'light'}">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <span class="badge bg-secondary">4</span>
+                                    <i class="material-icons" style="font-size: 40px;">public</i>
+                                </div>
+                                <h5 class="card-title mt-2">Global Distribution</h5>
+                                <p class="card-text">Know where to access your favorite content, no matter the region, with our extensive global distribution network.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div class="col-md-4 mb-4 d-flex">
+                        <div class="card" [ngClass]="{'features-card-dark': selectedTheme === 'dark', 'features-card-light': selectedTheme === 'light', 'flex-fill': true}">
+                            <div class="card-body" [ngClass]="{'text-white': selectedTheme === 'dark', 'text-dark': selectedTheme === 'light'}">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <span class="badge bg-secondary">5</span>
+                                    <i class="material-icons" style="font-size: 40px;">high_quality</i>
+                                </div>
+                                <h5 class="card-title mt-2">High-Quality Experience</h5>
+                                <p class="card-text">Discover the best image and sound technologies for your entertainment, ensuring a superior viewing experience.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 6 -->
+                    <div class="col-md-4 mb-4 d-flex">
+                        <div class="card" [ngClass]="{'features-card-dark': selectedTheme === 'dark', 'features-card-light': selectedTheme === 'light', 'flex-fill': true}">
+                            <div class="card-body" [ngClass]="{'text-white': selectedTheme === 'dark', 'text-dark': selectedTheme === 'light'}">
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <span class="badge bg-secondary">6</span>
+                                    <i class="material-icons" style="font-size: 40px;">touch_app</i>
+                                </div>
+                                <h5 class="card-title mt-2">User-Friendly Interface</h5>
+                                <p class="card-text">Navigate with ease using our sleek and intuitive design, crafted to enhance user experience.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
 </div>

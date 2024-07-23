@@ -3,19 +3,11 @@ section {
   height: calc(100vh - 108.8px);
   width: 80vw;
   border-radius: 30px;
-  scroll-margin-top: 108.8px;
+  scroll-margin-top: calc(10vh + 108.8px);
   margin: 0 auto;
 }
 
-.section-dark {
-  box-shadow: darkred 0px 0px 90px inset;
-}
-
-.section-light {
-  box-shadow: #bababa 0px 0px 90px inset;
-}
-
-.welcome-container {
+.welcome-container-dark {
   height: calc(90vh - 108.8px);
   margin-top: 160px;
   text-align: center;
@@ -26,20 +18,109 @@ section {
   background-color: transparent !important;
 }
 
-.home-container {
+.home-container-dark {
   height: calc(90vh - 108.8px);
   text-align: center;
   background-color: #202020;
 }
 
-.technology-logo-conatiner {
+.technology-logo-conatiner-dark {
   height: 120px;
   width: 300px;
   max-width: 300px;
-  background-color: #ffffff;
+  background-color: white;
+}
+
+.welcome-container-light {
+  height: calc(90vh - 108.8px);
+  margin-top: 160px;
+  text-align: center;
+  background-color: #ebebeb;
+}
+
+.home-container-light {
+  height: calc(90vh - 108.8px);
+  text-align: center;
+  background-color: #f5f5f5;
+}
+
+.technology-logo-conatiner-light {
+  height: 120px;
+  width: 300px;
+  max-width: 300px;
+  background-color: white;
 }
 
 .img-technology-logo {
   max-height: 90px;
   max-width: 210px;
 }
+
+.card-header {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.card-text {
+  font-size: 1rem;
+}
+
+.img-logo {
+  width: 100%;
+  max-width: 92px;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.custom-card:hover {
+  max-width: 282px;
+  box-shadow: 0px 0px 16px 8px rgba(167, 11, 45, 1);
+}
+
+.img-thumbnail-custom {
+  max-height: 400px;
+  max-width: 282px;
+  border-top-right-radius: 6px;
+}
+
+.features-card-dark:hover {
+  background-color: #444444;
+  cursor: pointer;
+  box-shadow: 0px 0px 16px 8px rgba(167, 11, 45, 1);
+}
+
+.features-card-dark {
+  border-color: #ff003f;
+  border-bottom: 0px;
+  border-right: 0px;
+  border-top-width: 12px;
+  color: white;
+  background-color: #1A1F2B;
+  transition-duration: 0.2s;
+}
+
+.features-card-light:hover {
+  background-color: #e0e0e0;
+  cursor: pointer;
+  box-shadow: 0px 0px 16px 8px rgba(0, 123, 255, 0.5);
+}
+
+.features-card-light {
+  border-color: #007bff;
+  border-bottom: 0px;
+  border-right: 0px;
+  border-top-width: 12px;
+  color: black;
+  background-color: #ffffff;
+  transition-duration: 0.2s;
+}
+
+.light-text {
+  font-weight: 300;
+}
+
+.cover-under {
+  align-content: center;
+  height: auto;
+}
+

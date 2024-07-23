@@ -11,7 +11,6 @@ import { MovieService } from '../../api/movie.service';
 import { ProductionService } from '../../api/production.service';
 import { TechnologyService } from '../../api/technology.service';
 import { CommonService } from '../../services/common.service';
-import { ScrollService } from '../../services/scroll.service';
 import { UIPresentationConfigService } from '../../services/ui-presentation-config.service';
 
 @Component({
