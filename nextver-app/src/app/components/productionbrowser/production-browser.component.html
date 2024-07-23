@@ -1,51 +1,67 @@
 <div class="container-custom under-header-content" (window:resize)="resizeScreen()">
-  <div class="container-xl ps-5 pe-5 rounded">
-    <div class="row">
-      <div class="col mb-4">
-        <h1 class="mt-5">Production Browser</h1>
-        <p class="mt-3">Browse games/movies/tvshows and choose from our {{ productionCount }} productions, where you can check all info about it.</p>
-        <div class="form-group">
-              <label for="category">Choose a category:</label>
-              <select [(ngModel)]="selectedCategory" (change)="onCategoryChange()">
-                <option value="movie">Movies</option>
-                <option value="game">Games</option>
-                <option value="tvshow">Series</option>
-              </select>
+    <div class="ps-5 pe-5 rounded" [ngClass]="selectedTheme === 'light' ? 'bg-light light-mode' : 'primary-bg dark-mode'">
+        <div class="row">
+            <div class="col mb-4">
+                <h1 class="mt-5">Production Browser</h1>
+                <p class="mt-3">Browse games/movies/tvshows and choose from our {{ productionCount }} productions, where you can check all info about it.</p>
+                <div class="form-group">
+                    <label for="category" class="category-label">Choose a category:</label>
+                    <div class="btn-group" role="group" aria-label="Category selection">
+                        <button type="button"
+                                class="btn"
+                                [ngClass]="{'btn-primary': selectedCategory === 'movie', 'btn-secondary': selectedCategory !== 'movie'}"
+                                (click)="selectCategory('movie')">
+                            Movies
+                        </button>
+                        <button type="button"
+                                class="btn"
+                                [ngClass]="{'btn-primary': selectedCategory === 'game', 'btn-secondary': selectedCategory !== 'game'}"
+                                (click)="selectCategory('game')">
+                            Games
+                        </button>
+                        <button type="button"
+                                class="btn"
+                                [ngClass]="{'btn-primary': selectedCategory === 'tvshow', 'btn-secondary': selectedCategory !== 'tvshow'}"
+                                (click)="selectCategory('tvshow')">
+                            Tv Series
+                        </button>
+                    </div>
+                </div>
+
+                <p *ngIf="fetchFailed && !isFetching">Failed to load any productions, please try refreshing the page or contact our support.</p>
+                <div class="card mt-4 rounded border-0" *ngIf="!fetchFailed && !isFetching">
+                    <ul class="list-group list-group-flush" *ngIf="productions !== undefined && productions.length > 0 && !isFetching">
+                        <app-production-row *ngFor="let production of productions" [production]="production"></app-production-row>
+                    </ul>
+                </div>
+                <div class="text-center mt-2" *ngIf="isFetching">
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
             </div>
-        <p *ngIf="fetchFailed && !isFetching">Failed to load any productions, please try refreshing the page or contact our support.</p>
-        <div class="card mt-4 rounded border-0" *ngIf="!fetchFailed && !isFetching">
-          <ul class="list-group list-group-flush" *ngIf="productions !== undefined && productions.length > 0 && !isFetching">
-            <app-production-row *ngFor="let production of productions" [production]="production"></app-production-row>
-          </ul>
         </div>
-        <div class="text-center mt-2" *ngIf="isFetching">
-          <div class="spinner-border" role="status">
-            <span class="visually-hidden">Loading...</span>
-          </div>
+        <div class="row" *ngIf="pagination !== undefined && pagination.totalPages > 1">
+            <div class="col d-flex justify-content-center mb-3">
+                <nav aria-label="Page navigation example" *ngIf="productions !== undefined && productions.length > 0 && !isFetching">
+                    <ul class="pagination">
+                        <li class="page-item noSelect" [class.disabled]="isFirstPage" (click)="changePage(false)">
+                            <a class="page-link rounded-0" tabindex="-1">Previous</a>
+                        </li>
+                        <li class="page-item noSelect" (click)="getProductions(1)"><a class="page-link">1</a></li>
+                        <li class="page-item disabled" *ngIf="pagination?.currentPage === 1 || pagination?.currentPage === pagination?.totalPages">
+                            <a class="page-link">...</a>
+                        </li>
+                        <li class="page-item disabled" *ngIf="pagination?.currentPage !== 1 && pagination?.currentPage !== pagination?.totalPages">
+                            <a class="page-link">{{pagination?.currentPage}}</a>
+                        </li>
+                        <li class="page-item noSelect" (click)="getProductions(pagination?.totalPages)"><a class="page-link">{{pagination?.totalPages}}</a></li>
+                        <li class="page-item noSelect" [class.disabled]="isLastPage" (click)="changePage(true)">
+                            <a class="page-link rounded-0">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
         </div>
-      </div>
     </div>
-    <div class="row" *ngIf="pagination !== undefined && pagination.totalPages > 1">
-      <div class="col d-flex justify-content-center mb-3">
-        <nav aria-label="Page navigation example" *ngIf="productions !== undefined && productions.length > 0 && !isFetching">
-          <ul class="pagination">
-            <li class="page-item noSelect" [class.disabled]="isFirstPage" (click)="changePage(false)">
-              <a class="page-link rounded-0" tabindex="-1" aria-disabled="true">Previous</a>
-            </li>
-            <li class="page-item noSelect" (click)="getProductions(1)"><a class="page-link">1</a></li>
-            <li class="page-item disabled" *ngIf="pagination?.currentPage === 1 || pagination?.currentPage === pagination?.totalPages">
-              <a class="page-link">...</a>
-            </li>
-            <li class="page-item disabled" *ngIf="pagination?.currentPage !== 1 && pagination?.currentPage !== pagination?.totalPages">
-              <a class="page-link">{{pagination?.currentPage}}</a>
-            </li>
-            <li class="page-item noSelect" (click)="getProductions(pagination?.totalPages)"><a class="page-link">{{pagination?.totalPages}}</a></li>
-            <li class="page-item noSelect" [class.disabled]="isLastPage" (click)="changePage(true)">
-              <a class="page-link rounded-0">Next</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-  </div>
 </div>

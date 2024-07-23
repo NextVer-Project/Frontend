@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { CommonService } from '../../../services/common.service';
 import { AuthService } from '../../../api/auth.service';
 import { User } from '../../../interfaces/user';
+import { UIPresentationConfigService } from '../../../services/ui-presentation-config.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-production-row',
@@ -17,10 +19,16 @@ export class ProductionRowComponent implements OnInit {
   user: User | undefined;
   public releaseYear: string;
 
-  constructor(private datePipe: DatePipe, private router: Router, private commonService: CommonService, private authService: AuthService) {
+  constructor(private datePipe: DatePipe, private router: Router, private commonService: CommonService,
+    private authService: AuthService, private uiPresentationConfigService: UIPresentationConfigService,
+    private toastr: ToastrService) {
     this.authService.currentUser$.subscribe(user => {
       this.user = user;
     });
+  }
+
+  get selectedTheme() {
+    return this.uiPresentationConfigService.getSelectedTheme();
   }
 
   ngOnInit(): void {
@@ -49,9 +57,7 @@ export class ProductionRowComponent implements OnInit {
       this.commonService.selectedProduction = this.production;
       this.router.navigate(['/details', category, this.production.id]);
     } else {
-      console.log('Please Sign In before checking production.');
+      this.toastr.error('Please Sign In before checking production.', 'Error');
     }
   }
-
-
 }

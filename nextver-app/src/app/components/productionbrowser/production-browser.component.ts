@@ -9,6 +9,7 @@ import { DatePipe } from '@angular/common';
 import { CommonService } from '../../services/common.service';
 import { ProductionDto } from '../../api/dtos/production.dto';
 import { ProductionCountDto } from '../../api/dtos/production-count.dto';
+import { UIPresentationConfigService } from '../../services/ui-presentation-config.service';
 
 
 @Component({
@@ -31,7 +32,12 @@ export class ProductionBrowserComponent implements OnInit {
   public selectedCategory: string = 'movie';
 
 
-  constructor(private movieService: MovieService, private productionService: ProductionService, private commonService: CommonService, private authService: AuthService) { }
+  constructor(private movieService: MovieService, private productionService: ProductionService, private commonService: CommonService,
+    private authService: AuthService, private uiPresentationConfigService: UIPresentationConfigService) { }
+
+  get selectedTheme() {
+    return this.uiPresentationConfigService.getSelectedTheme();
+  }
 
   ngOnInit(): void {
     this.getNumberOfMovies();
@@ -45,8 +51,7 @@ export class ProductionBrowserComponent implements OnInit {
     this.movieService.GetNumberOfMovies()
       .subscribe((response: MovieCountDto) => {
         this.movieCount = response.numberOfMovies;
-/*        console.error('There was an error while processing Your request.');
-*/      });
+      });
   }
 
   public getMovies(pageNumber: number = 1, itemsPerPage: number = 8): void {
@@ -84,15 +89,6 @@ export class ProductionBrowserComponent implements OnInit {
         this.fetchFailed = false;
         this.productions = response.result;
 
-     /*   this.productions.forEach(production => {
-          if (production.category === 'tvshow') {
-            this.productionService.getTotalDurationForTvShow(production.id)
-              .subscribe((duration: number) => {
-                production.totalDuration = duration;
-              });
-          }
-        });*/
-
         this.pagination = response.pagination;
         this.isFirstPage = this.pagination?.currentPage === 1;
         this.isLastPage = this.pagination?.totalPages === this.pagination?.currentPage;
@@ -106,11 +102,14 @@ export class ProductionBrowserComponent implements OnInit {
       });
   }
 
+  selectCategory(category: string): void {
+    this.selectedCategory = category;
+    this.onCategoryChange();
+  }
 
-  // Dodaj tę metodę do obsługi zmiany kategorii
   public onCategoryChange() {
     this.getNumberOfProductions();
-    this.commonService.setSelectedCategory(this.selectedCategory); // Ustaw nową kategorię
+    this.commonService.setSelectedCategory(this.selectedCategory);
     this.getProductions(1);
     this.isTvShow = this.selectedCategory === 'tvshow';
   }
