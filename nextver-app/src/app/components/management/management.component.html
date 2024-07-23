@@ -1,5 +1,5 @@
-<div class="container-custom">
-    <div class="container-xl bg-white ps-5 pe-5">
+<div class="container-custom under-header-content">
+    <div class="ps-5 pe-5" [ngClass]="selectedTheme === 'light' ? 'light-b' : 'primary-bg'">
         <div class="row">
             <div class="col mb-5">
                 <h1 class="mt-5">Management</h1>
@@ -12,44 +12,253 @@
                 </p>
                 <div class="row">
                     <div class="col">
-                        <div class="card mt-4 rounded-0">
+                        <div class="card mt-4 rounded-0" [ngClass]="selectedTheme === 'light' ? 'light-frame' : 'secondary-bg'">
                             <div class="card-body">
-                                <h5 class="card-title col d-flex align-items-center"><span class="material-icons me-2">movie</span>Movies</h5>
+                                <h5 class="card-title col d-flex align-items-center">
+                                    <span class="material-icons me-2">movie</span>Movies
+                                </h5>
+                                <hr />
                                 <div class="row">
                                     <div class="col p-4">
-                                        <button class="btn-base btn-blue w-100" routerLink="/management/movie/add">Add new</button>
+                                        <button class="btn-base btn-red w-100" routerLink="/management/movie/add">Add new</button>
                                     </div>
                                     <div class="col p-4">
-                                        <button class="btn-base btn-blue w-100" routerLink="/management">Edit</button>
+                                        <button class="btn-base btn-red w-100" routerLink="/management/movie/edit">Edit</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="card mt-4 rounded-0">
+                        <div class="card mt-4 rounded-0" [ngClass]="selectedTheme === 'light' ? 'light-frame' : 'secondary-bg'">
                             <div class="card-body">
-                                <h5 class="card-title col d-flex align-items-center"><span class="material-icons me-2">tv</span>TvShows</h5>
+                                <h5 class="card-title col d-flex align-items-center">
+                                    <span class="material-icons me-2">tv</span>Tv Shows
+                                </h5>
+                                <hr />
                                 <div class="row">
                                     <div class="col p-4">
-                                        <button class="btn-base btn-indigo w-100" routerLink="/management/tvshow/add">Add new</button>
+                                        <button class="btn-base btn-rose w-100" routerLink="/management/tvshow/add">Add new</button>
                                     </div>
                                     <div class="col p-4">
-                                        <button class="btn-base btn-indigo w-100" routerLink="/history">Edit</button>
+                                        <button class="btn-base btn-rose w-100" routerLink="/management/tvshow/edit">Edit</button>
                                     </div>
-                                </div>                           
+                                </div>
+                                <hr />
+                                <h6>Episode</h6>
+                                <div class="row">
+                                    <div class="col p-4">
+                                        <button class="btn-base btn-rose w-100" routerLink="/management//create" *ngIf="user?.role === 1">Add new</button>
+                                    </div>
+                                    <div class="col p-4">
+                                        <button class="btn-base btn-rose w-100" routerLink="/management//edit" *ngIf="user?.role === 1">Edit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mt-4 rounded-0" [ngClass]="selectedTheme === 'light' ? 'light-frame' : 'secondary-bg'">
+                            <div class="card-body">
+                                <h5 class="card-title col d-flex align-items-center">
+                                    <span class="material-icons me-2">category</span> Genre
+                                </h5>
+                                <hr />
+                                <div class="row">
+                                    <div class="col p-4">
+                                        <button class="btn-base btn-indigo w-100" routerLink="/management/genre/add" *ngIf="user?.role === 1">Add new</button>
+                                    </div>
+                                    <div class="col p-4">
+                                        <button class="btn-base btn-indigo w-100" routerLink="/management/genre/edit" *ngIf="user?.role === 1">Edit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mt-4 rounded-0" [ngClass]="selectedTheme === 'light' ? 'light-frame' : 'secondary-bg'">
+                            <div class="card-body">
+                                <h5 class="card-title col d-flex align-items-center">
+                                    <span class="material-icons me-2">public</span>Universe
+                                </h5>
+                                <hr />
+                                <div class="row">
+                                    <div class="col p-4">
+                                        <button class="btn-base btn-purple w-100" routerLink="/management/universe/add" *ngIf="user?.role === 1">Add new</button>
+                                    </div>
+                                    <div class="col p-4">
+                                        <button class="btn-base btn-purple w-100" routerLink="/management/universe/edit" *ngIf="user?.role === 1">Edit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mt-4 rounded-0" [ngClass]="selectedTheme === 'light' ? 'light-frame' : 'secondary-bg'">
+                            <div class="card-body">
+                                <h5 class="card-title col d-flex align-items-center">
+                                    <span class="material-icons me-2">memory</span>Technology
+                                </h5>
+                                <hr />
+                                <div class="row">
+                                    <div class="col p-4">
+                                        <button class="btn-base btn-dark-purple w-100" routerLink="/management/technology/add">Add new</button>
+                                    </div>
+                                    <div class="col p-4">
+                                        <button class="btn-base btn-dark-purple w-100" routerLink="/management/technology/edit">Edit</button>
+                                    </div>
+                                </div>
+                                <hr />
+                                <h6>
+                                    Technology Type
+                                </h6>
+                                <div class="row">
+                                    <div class="col p-4">
+                                        <button class="btn-base btn-dark-purple w-100" routerLink="/management//create" *ngIf="user?.role === 1">Add new</button>
+                                    </div>
+                                    <div class="col p-4">
+                                        <button class="btn-base btn-dark-purple w-100" routerLink="/management//edit" *ngIf="user?.role === 1">Edit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mt-4 rounded-0" [ngClass]="selectedTheme === 'light' ? 'light-frame' : 'secondary-bg'">
+                            <div class="card-body">
+                                <h5 class="card-title col d-flex align-items-center">
+                                    <span class="material-icons me-2">collections</span>User Collection Type
+                                </h5>
+                                <hr />
+                                <div class="row">
+                                    <div class="col p-4">
+                                        <button class="btn-base btn-teal w-100" routerLink="/management/tvshow/add">Add new</button>
+                                    </div>
+                                    <div class="col p-4">
+                                        <button class="btn-base btn-teal w-100" routerLink="/management/tvshow/edit">Edit</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col">                        
-                        
-                        <div class="card mt-4 rounded-0">
+                    <div class="col">
+                        <div class="card mt-4 rounded-0" [ngClass]="selectedTheme === 'light' ? 'light-frame' : 'secondary-bg'">
                             <div class="card-body">
-                                <h5 class="card-title col d-flex align-items-center"><span class="material-icons me-2">build</span>Miscellaneous</h5>
+                                <h5 class="card-title col d-flex align-items-center">
+                                    <span class="material-icons me-2">account_circle</span>User
+                                </h5>
+                                <hr />
                                 <div class="row">
                                     <div class="col p-4">
-                                        <button class="btn-base btn-purple w-100" routerLink="/management">Edit user</button>
+                                        <button class="btn-base btn-dark-teal w-100" routerLink="/management/employee/create" *ngIf="user?.role === 1">Add new</button>
                                     </div>
                                     <div class="col p-4">
-                                        <button class="btn-base btn-purple w-100" routerLink="/management/employee/create" *ngIf="user?.role === 1">Add employee</button>
+                                        <button class="btn-base btn-dark-teal w-100" routerLink="/management">Edit</button>
+                                    </div>
+                                </div>
+                                <hr />
+                                <h6>User Type</h6>
+                                <div class="row">
+                                    <div class="col p-4">
+                                        <button class="btn-base btn-dark-indigo w-100" routerLink="/management/usertype/create" *ngIf="user?.role === 1">Add new</button>
+                                    </div>
+                                    <div class="col p-4">
+                                        <button class="btn-base btn-dark-indigo w-100" routerLink="/management/usertype/edit" *ngIf="user?.role === 1">Edit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mt-4 rounded-0" [ngClass]="selectedTheme === 'light' ? 'light-frame' : 'secondary-bg'">
+                            <div class="card-body">
+                                <h5 class="card-title col d-flex align-items-center">
+                                    <span class="material-icons me-2">place</span>Release Place
+                                </h5>
+                                <hr />
+                                <div class="row">
+                                    <div class="col p-4">
+                                        <button class="btn-base btn-orange w-100" routerLink="/management/releaseplace/add">Add new</button>
+                                    </div>
+                                    <div class="col p-4">
+                                        <button class="btn-base btn-orange w-100" routerLink="/management/releaseplace/edit">Edit</button>
+                                    </div>
+                                </div>
+                                <hr />
+                                <h6>
+                                    Release Place Type
+                                </h6>
+                                <div class="row">
+                                    <div class="col p-4">
+                                        <button class="btn-base btn-orange w-100" routerLink="/management/releaseplacetype/create" *ngIf="user?.role === 1">Add new</button>
+                                    </div>
+                                    <div class="col p-4">
+                                        <button class="btn-base btn-orange w-100" routerLink="/management/releaseplacetype/edit" *ngIf="user?.role === 1">Edit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mt-4 rounded-0" [ngClass]="selectedTheme === 'light' ? 'light-frame' : 'secondary-bg'">
+                            <div class="card-body">
+                                <h5 class="card-title col d-flex align-items-center">
+                                    <span class="material-icons me-2">photo_library</span>Media Gallery Type
+                                </h5>
+                                <hr />
+                                <div class="row">
+                                    <div class="col p-4">
+                                        <button class="btn-base btn-green w-100" routerLink="/management/mediagallerytype/add">Add new</button>
+                                    </div>
+                                    <div class="col p-4">
+                                        <button class="btn-base btn-green w-100" routerLink="/management/mediagallerytype/edit">Edit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mt-4 rounded-0" [ngClass]="selectedTheme === 'light' ? 'light-frame' : 'secondary-bg'">
+                            <div class="card-body">
+                                <h5 class="card-title col d-flex align-items-center">
+                                    <span class="material-icons me-2">notifications</span>Notification
+                                </h5>
+                                <hr />
+                                <div class="row">
+                                    <div class="col p-4">
+                                        <button class="btn-base btn-blue w-100" routerLink="/management/notification/add">Add new</button>
+                                    </div>
+                                    <div class="col p-4">
+                                        <button class="btn-base btn-blue w-100" routerLink="/management/notification/edit">Edit</button>
+                                    </div>
+                                </div>
+                                <hr />
+                                <h6>
+                                    Notification Type
+                                </h6>
+                                <hr />
+                                <div class="row">
+                                    <div class="col p-4">
+                                        <button class="btn-base btn-blue w-100" routerLink="/management/notificationtype/add">Add new</button>
+                                    </div>
+                                    <div class="col p-4">
+                                        <button class="btn-base btn-blue w-100" routerLink="/management/notificationtype/edit">Edit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mt-4 rounded-0" [ngClass]="selectedTheme === 'light' ? 'light-frame' : 'secondary-bg'">
+                            <div class="card-body">
+                                <h5 class="card-title col d-flex align-items-center">
+                                    <span class="material-icons me-2">tv</span>Production Type
+                                </h5>
+                                <hr />
+                                <div class="row">
+                                    <div class="col p-4">
+                                        <button class="btn-base btn-dark-orange w-100" routerLink="/management/productiontype/add">Add new</button>
+                                    </div>
+                                    <div class="col p-4">
+                                        <button class="btn-base btn-dark-orange w-100" routerLink="/management/productiontype/edit">Edit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mt-4 rounded-0" [ngClass]="selectedTheme === 'light' ? 'light-frame' : 'secondary-bg'">
+                            <div class="card-body">
+                                <h5 class="card-title col d-flex align-items-center">
+                                    <span class="material-icons me-2">tv</span>Rating Category
+                                </h5>
+                                <hr />
+                                <div class="row">
+                                    <div class="col p-4">
+                                        <button class="btn-base btn-dark-green w-100" routerLink="/management/ratingcategory/add">Add new</button>
+                                    </div>
+                                    <div class="col p-4">
+                                        <button class="btn-base btn-dark-green w-100" routerLink="/management/ratingcategory/edit">Edit</button>
                                     </div>
                                 </div>
                             </div>

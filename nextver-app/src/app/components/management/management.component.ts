@@ -3,6 +3,7 @@ import { User } from '../../interfaces/user';
 import { Router } from '@angular/router';
 import { AuthService } from '../../api/auth.service';
 import { Privileges } from '../../enums/privileges.enum';
+import { UIPresentationConfigService } from '../../services/ui-presentation-config.service';
 
 @Component({
   selector: 'app-management',
@@ -12,10 +13,14 @@ import { Privileges } from '../../enums/privileges.enum';
 export class ManagementComponent implements OnInit {
   public user: User | undefined;
 
-  constructor(public router: Router, private authService: AuthService) {
+  constructor(public router: Router, private authService: AuthService, private uiPresentationConfigService: UIPresentationConfigService) {
     this.authService.currentUser$.subscribe(user => {
       this.user = user;
     });
+  }
+
+  get selectedTheme() {
+    return this.uiPresentationConfigService.getSelectedTheme();
   }
 
   ngOnInit(): void {

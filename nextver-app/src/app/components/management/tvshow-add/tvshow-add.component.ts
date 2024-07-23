@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../../api/auth.service';
 import { User } from '../../../interfaces/user';
 import { FormGroup, NgForm } from "@angular/forms";
-import { TvShowForAddDto } from "../../../api/dtos/tvShow-for-add.dto";
-import { TvShowService } from "../../../api/tvShow.service";
+import { TvShowForAddDto } from "../../../api/dtos/tvshow-for-add.dto";
+import { TvShowService } from "../../../api/tvshow.service";
 import { Privileges } from "../../../enums/privileges.enum";
 import { UniverseForAddDto } from '../../../api/dtos/universe-for-add.dto';
 import { UniverseForEditDto } from '../../../api/dtos/universe-for-edit.dto';
@@ -18,7 +18,7 @@ import { GenreForEditDto } from '../../../api/dtos/genre-for-edit.dto';
   templateUrl: './tvshow-add.component.html',
   styleUrls: ['./tvshow-add.component.css']
 })
-export class TvshowAddComponent implements OnInit {
+export class TvShowAddComponent implements OnInit {
   public user: User | undefined;
   public isFetching = false;
   public universes: Array<UniverseForEditDto> | undefined;
@@ -97,8 +97,6 @@ export class TvshowAddComponent implements OnInit {
   public onSubmit(form: NgForm): void {
     const tvShow: TvShowForAddDto = {
       title: form.value.title,
-      releaseDate: new Date(form.value.releaseDate),
-      runtime: form.value.runtime,
       description: form.value.description,
       coverUrl: form.value.tvShowCoverUrl,
       trailerUrl: form.value.tvShowTrailerUrl,

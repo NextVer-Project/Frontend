@@ -1,11 +1,13 @@
 import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { environment } from '../../../../environments/environment';
 import { AuthService } from '../../../api/auth.service';
 import { ProductionDto } from '../../../api/dtos/production.dto';
 import { User } from '../../../interfaces/user';
 import { CommonService } from '../../../services/common.service';
+import { UIPresentationConfigService } from '../../../services/ui-presentation-config.service';
 
 @Component({
   selector: 'app-production-card',
@@ -18,11 +20,18 @@ export class ProductionCardComponent {
   public releaseYear: string;
   public selectedCategory: string;
 
-  constructor(private datePipe: DatePipe, private router: Router, private commonService: CommonService, private authService: AuthService) {
+  constructor(private datePipe: DatePipe, private router: Router, private commonService: CommonService,
+    private authService: AuthService, private uiPresentationConfigService: UIPresentationConfigService,
+    private toastr: ToastrService) {
     this.authService.currentUser$.subscribe(user => {
       this.user = user;
     });
   }
+
+  get selectedTheme() {
+    return this.uiPresentationConfigService.getSelectedTheme();
+  }
+
 
   ngOnInit(): void {
     if (this.production && this.production.releaseDate) {
@@ -51,7 +60,7 @@ export class ProductionCardComponent {
     }
     else
     {
-      console.log('Please Sign In before checking production.');
+      this.toastr.error('Please Sign In before checking production.', 'Error');
     }
   }
 }

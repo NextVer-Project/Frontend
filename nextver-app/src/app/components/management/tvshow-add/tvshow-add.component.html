@@ -1,4 +1,4 @@
-<div class="container-custom">
+<div class="container-custom under-header-content">
     <div class="overlay" *ngIf="isFetching">
         <div class="position-absolute top-50 start-50 translate-middle">
             <div class="spinner-border" role="status">
@@ -6,14 +6,14 @@
             </div>
         </div>
     </div>
-    <div class="container-xl bg-white ps-5 pe-5">
+    <div class="container-xl primary-bg ps-5 pe-5">
         <div class="row">
             <div class="col mb-5">
-                <h1 class="mt-5">Add tvShow</h1>
-                <p class="mt-3">Add a new tvShow to the system.</p>
+                <h1 class="mt-5">Add Tv Show</h1>
+                <p class="mt-3">Add a new Tv Show to the system.</p>
                 <div class="row">
-                    <div class="col-lg-6">
-                        <div class="card mt-2 rounded-0">
+                    <div class="col">
+                        <div class="card secondary-bg mt-2 rounded-0">
                             <div class="card-body">
                                 <h5 class="card-title col d-flex align-items-center"><span class="material-icons me-2">tv</span>Tv Show</h5>
                                 <form #tvShowForm="ngForm" (ngSubmit)="onSubmit(tvShowForm)">
@@ -22,42 +22,18 @@
                                             <div class="col-6">
                                                 <div class="form-floating">
                                                     <input type="text"
-                                                           class="form-control rounded-0"
+                                                           class="form-control rounded-0 bg-dark text-white"
                                                            id="title"
                                                            placeholder="Title"
                                                            ngModel name="title"
                                                            required>
                                                     <label for="title">Title</label>
                                                 </div>
-                                            </div>
+                                            </div>                                        
                                             <div class="col-6">
                                                 <div class="form-floating">
                                                     <input type="text"
-                                                           class="form-control rounded-0"
-                                                           id="releaseDate"
-                                                           placeholder="ReleaseDate"
-                                                           ngModel name="releaseDate"
-                                                           required>
-                                                    <label for="releaseDate">Release Date</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row mt-4">
-                                            <div class="col-6">
-                                                <div class="form-floating">
-                                                    <input type="text"
-                                                           class="form-control rounded-0"
-                                                           id="runtime"
-                                                           placeholder="Runtime"
-                                                           ngModel name="runtime"
-                                                           required>
-                                                    <label for="runtime">Runtime</label>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="form-floating">
-                                                    <input type="text"
-                                                           class="form-control rounded-0"
+                                                           class="form-control rounded-0 bg-dark text-white"
                                                            id="description"
                                                            placeholder="Description"
                                                            ngModel name="description"
@@ -65,10 +41,12 @@
                                                     <label for="description">Description</label>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="row mt-4">
                                             <div class="col-6">
                                                 <div class="form-floating">
                                                     <input type="text"
-                                                           class="form-control rounded-0"
+                                                           class="form-control rounded-0 bg-dark text-white"
                                                            id="tvShowCoverUrl"
                                                            placeholder="MvieCoverUrl"
                                                            ngModel name="tvShowCoverUrl"
@@ -79,7 +57,7 @@
                                             <div class="col-6">
                                                 <div class="form-floating">
                                                     <input type="text"
-                                                           class="form-control rounded-0"
+                                                           class="form-control rounded-0 bg-dark text-white"
                                                            id="tvShowTrailerUrl"
                                                            placeholder="TvShowTrailerUrl"
                                                            ngModel name="tvShowTrailerUrl"
@@ -87,6 +65,8 @@
                                                     <label for="tvShowTrailerUrl">TvShow trailer Url</label>
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="row mt-4">
                                             <div class="form-group">
                                                 <label>Universes</label>
                                                 <div>
@@ -98,7 +78,6 @@
                                                     </button>
                                                 </div>
                                             </div>
-
                                             <div class="form-group">
                                                 <label>Genres</label>
                                                 <div>
@@ -114,7 +93,7 @@
                                     </div>
                                     <div class="row mt-4">
                                         <div class="col d-flex justify-content-end">
-                                            <button class="btn-base btn-black" type="submit" [disabled]="!tvShowForm.valid">Create</button>
+                                            <button class="btn btn-dark" type="submit" [disabled]="!tvShowForm.valid">Create</button>
                                         </div>
                                     </div>
                                 </form>

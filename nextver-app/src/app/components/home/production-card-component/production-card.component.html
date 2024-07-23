@@ -1,11 +1,11 @@
 <div *ngIf="selectedCategory === 'movie'" class="mt-1 border-0" (click)="selectProduction('movie')">
-  <div class="card custom-card">
-    <img [src]="production?.formattedProductionCoverUrl" alt="Production Cover" class="img-thumbnail-custom">
-    <div class="cover-under">
-      <h5 class="m-1 lead">{{production?.title}}</h5>
-      <h5 class="m-1 lead">({{releaseYear}})</h5>
+    <div class="card" [ngClass]="(selectedTheme === 'light' ? 'card-light custom-card-light' : 'card-dark custom-card-dark')">
+        <img [src]="production?.formattedProductionCoverUrl" alt="Production Cover" class="img-thumbnail-custom">
+        <div class="cover-under">
+            <h5 class="m-1 lead">{{production?.title}}</h5>
+            <h5 class="m-1 lead">({{releaseYear}})</h5>
+        </div>
     </div>
-  </div>
 </div>
 <div *ngIf="selectedCategory === 'game'" class="mt-1 border-0" (click)="selectProduction('movie')">
   <div class="card custom-card">

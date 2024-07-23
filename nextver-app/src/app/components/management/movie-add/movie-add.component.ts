@@ -11,6 +11,7 @@ import { UniverseForEditDto } from '../../../api/dtos/universe-for-edit.dto';
 import { UniverseService } from '../../../api/universe.service';
 import { GenreService } from '../../../api/genre.service';
 import { GenreForEditDto } from '../../../api/dtos/genre-for-edit.dto';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-movie-add',
@@ -26,7 +27,7 @@ export class MovieAddComponent implements OnInit {
   selectedUniverses: number[] = [];
 
   constructor(public router: Router, private authService: AuthService,
-    private movieService: MovieService, private universeService: UniverseService, private genreService: GenreService) {
+    private movieService: MovieService, private universeService: UniverseService, private genreService: GenreService, private toastr: ToastrService) {
     this.authService.currentUser$.subscribe(user => {
       this.user = user;
     });
@@ -108,11 +109,10 @@ export class MovieAddComponent implements OnInit {
     this.isFetching = true;
 
     this.movieService.CreateMovie(movie).subscribe(() => {
-      
+      this.toastr.success(`The movie: ,,${movie.title}'' created!`, 'Success!'/*, { enableHtml: true }*/);
       this.isFetching = false;
     }, errorMsg => {
-      console.error('There was an error while loading movie genres details:', errorMsg);
-      
+      this.toastr.error('There was an error while adding movie.', errorMsg);      
       this.isFetching = false;
     });
   }

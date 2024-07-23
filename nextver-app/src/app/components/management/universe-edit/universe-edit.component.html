@@ -1,0 +1,83 @@
+<div class="container-custom under-header-content">
+    <div class="overlay" *ngIf="isFetching">
+        <div class="position-absolute top-50 start-50 translate-middle">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-xl primary-bg ps-5 pe-5">
+        <div class="row">
+            <div class="col mb-5">
+                <h1 class="mt-5">Edit universe</h1>
+                <p class="mt-3">Edit information about selected universe.</p>
+                <div class="col d-flex justify-content-center">
+                    <app-production-search [searchResults]="searchResults"
+                                           (search)="searchUniverse($event)"
+                                           (selectItem)="setValues($event)">
+                    </app-production-search>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card secondary-bg mt-4 rounded-0">
+                            <div class="card-body">
+                                <h5 class="card-title col d-flex align-items-center"><span class="material-icons me-2">public</span>Universe details</h5>
+                                <div class="row">
+                                    <div class="col mt-4">
+                                        <form [formGroup]="editForm" class="text-center" (ngSubmit)="onSubmit(editForm)">
+                                            <div class="col">
+                                                <div class="row mt-4">
+                                                    <div class="col-6">
+                                                        <div class="form-floating">
+                                                            <input type="text"
+                                                                   class="form-control rounded-0 bg-dark text-white"
+                                                                   id="name"
+                                                                   placeholder="Name"
+                                                                   formControlName="name"
+                                                                   name="name"
+                                                                   required>
+                                                            <label for="name">Name</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="form-floating">
+                                                            <input type="text"
+                                                                   class="form-control rounded-0 bg-dark text-white"
+                                                                   id="description"
+                                                                   placeholder="Description"
+                                                                   formControlName="description"
+                                                                   name="description"
+                                                                   required>
+                                                            <label for="description">Description</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-4">
+                                                    <div class="col-6">
+                                                        <div class="form-floating">
+                                                            <input type="text"
+                                                                   class="form-control rounded-0 bg-dark text-white"
+                                                                   id="logoUrl"
+                                                                   placeholder="LogoUrl"
+                                                                   formControlName="logoUrl"
+                                                                   name="logoUrl"
+                                                                   required>
+                                                            <label for="logoUrl">Logo Url</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-4">
+                                                <div class="col d-flex justify-content-end">
+                                                    <button class="btn-base btn-black w-50" (click)="onSubmit(editForm)" [disabled]="editForm.invalid">Save</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
