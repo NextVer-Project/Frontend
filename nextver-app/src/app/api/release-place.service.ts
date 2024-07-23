@@ -27,6 +27,11 @@ export class ReleasePlaceService {
     return this.http.get<ReleasePlaceForEditDto>(apiUrl);
   }
 
+  getReleasePlaces(): Observable<Array<ReleasePlaceForEditDto>> {
+    const apiUrl = `${this.url}`;
+    return this.http.get<Array<ReleasePlaceForEditDto>>(apiUrl);
+  }
+
   private handleError(errorRes: HttpErrorResponse): Observable<any> {
     let errorMessage = 'An unknown error occurred';
 

@@ -54,7 +54,7 @@ export class ProductionService {
         return ApiPaths.Movie;
       case 'game':
         return ApiPaths.Game;
-      case 'serie':
+      case 'tvshow':
         return ApiPaths.TvShow;
       default:
         return '';

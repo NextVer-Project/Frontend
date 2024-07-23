@@ -6,12 +6,14 @@ import { catchError, map } from 'rxjs/operators';
 import { PaginatedResult } from './dtos/pagination';
 import { AuthService } from './auth.service';
 import { ReleasePlaceService } from './release-place.service';
-import { TvShowForAddDto } from "./dtos/tvShow-for-add.dto";
-import { TvShowDetailsDto } from './dtos/tvShow-details.dto';
+import { TvShowForAddDto } from "./dtos/tvshow-for-add.dto";
+import { TvShowDetailsDto } from './dtos/tvshow-details.dto';
 import { GenreForEditDto } from './dtos/genre-for-edit.dto';
 import { UniverseForEditDto } from './dtos/universe-for-edit.dto';
 import { ReleasePlaceForEditDto } from './dtos/release-place-for-edit.dto';
 import { TvShowDto } from './dtos/tvshow.dto';
+import { TvShowForListDto } from './dtos/tvshow-for-list.dto';
+import { TvShowForEditDto } from './dtos/tvshow-for-edit.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -90,6 +92,35 @@ export class TvShowService {
     });
 
     return this.http.post(this.url, tvShow, { headers }).pipe(catchError(this.handleError));
+  }
+
+  public getTvShows(): Observable<Array<TvShowForListDto>> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${this.authService.getToken()}`
+    });
+
+    return this.http.get<Array<TvShowForListDto>>(this.url, { headers }).pipe(
+
+      map((responseData: Array<TvShowForListDto>) => responseData));
+  }
+
+  public edit(tvShowForEdit: TvShowForEditDto): Observable<TvShowForEditDto> {
+    const apiUrl = this.url + '/edit';
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${this.authService.getToken()}`
+    });
+
+    return this.http.patch<TvShowForEditDto>(apiUrl, tvShowForEdit, { headers })
+      .pipe(catchError(this.handleError)
+      );
+  }
+
+  searchTvShows(query: string): Observable<TvShowForListDto[]> {
+
+    return this.http.get<TvShowForListDto[]>(`${this.url}/search?title=${query}`);
   }
 
   private handleError(errorRes: HttpErrorResponse): Observable<any> {
