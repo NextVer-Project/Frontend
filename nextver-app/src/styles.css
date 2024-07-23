@@ -14,14 +14,6 @@ header {
   z-index: 1000;  
 }
 
-.dark-mode .header-ul {
-}
-
-.light-mode .header-ul {
-  border: 2px solid #848484;
-  border-radius: 15px;
-}
-
 .light-mode {
   background-color: #fbffff;
   color: #09385c;
@@ -44,17 +36,16 @@ header {
 
 .header-dark {
   background-color: black;
-  /*box-shadow: darkred 0px 20px 30px -10px, red 0px -10px 45px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
-*/ box-shadow: darkred 0px 0px 15px 10px, #ff003f 0px -5px 0px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+  box-shadow: darkred 0px 0px 15px 10px, #ff003f 0px -5px 0px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
 }
 
 .nav-light a {
   color: #09385c; 
 }
 
-.nav-light a:hover {
-  color: #c70000;
-}
+  .nav-light a:hover {
+    color: #0d6efd;
+  }
 
 .nav-dark a {
   color: #bdbdbd;
@@ -71,8 +62,8 @@ header {
 .technology-logo-size {
   width: 128px;
   height: 18px;
-
 }
+
 html {
   font-family: sans-serif;
   -ms-scroll-snap-type: mandatory;
@@ -87,28 +78,6 @@ html {
   background-color: white; 
   border-color: darkblue; 
   color: black;
-}
-
-.login-dark-mode .btn-circle {
-  background-color: black;
-  color: white;
-  width: 50px;
-  height: 50px;
-  margin: 15px;
-  padding: 10px 15px;
-  border-radius: 25px;
-  border-color: white;
-}
-
-.login-light-mode .btn-circle {
-  background-color: white;
-  color: black;
-  width: 50px;
-  height: 50px;
-  margin: 15px;
-  padding: 10px 15px;
-  border-radius: 25px;
-  border-color: black;
 }
 
 *,
@@ -224,4 +193,27 @@ html {
   padding: 0;
 }
 
+.primary-bg {
+  background-color: #202020;
+}
 
+.secondary-bg {
+  background-color: #2e2e2e;
+}
+
+
+.header-ul {
+  margin-bottom: 0 !important;
+}
+
+.search-bar-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0 15px;
+}
+
+.search-bar-container .search-container {
+  max-width: 600px;
+  width: 100%;
+}
