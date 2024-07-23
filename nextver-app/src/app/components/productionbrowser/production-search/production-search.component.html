@@ -1,0 +1,24 @@
+<div class="search-container" [class.expanded]="expanded" [ngClass]="selectedTheme === 'light' ? 'search-light' : 'search-dark'">
+    <input type="text"
+           class="form-control search-input"
+           placeholder="Search ..."
+           (focus)="expandSearch()"
+           (blur)="shrinkSearch()"
+           [(ngModel)]="searchText"
+           (input)="onSearch()">
+    <div *ngIf="expanded && searchResults.length" class="search-results">
+        <ul>
+            <li *ngFor="let item of searchResults" (click)="onSelectItem(item)">
+                <ng-container *ngIf="isHeader; else adminTemplate">
+                    <img *ngIf="item.coverUrl" [src]="item.coverUrl" alt="{{ item.title }}" class="cover-image">
+                    <span>{{ item.title }}</span>
+                </ng-container>
+                <ng-template #adminTemplate>
+                    <span *ngIf="isTitleComponent()">{{ item.title }}</span>
+                    <span *ngIf="!isTitleComponent()">{{ item.name }}</span>
+                </ng-template>
+            </li>
+        </ul>
+    </div>
+    <div class="search-overlay" *ngIf="expanded" (click)="shrinkSearch()"></div>
+</div>
