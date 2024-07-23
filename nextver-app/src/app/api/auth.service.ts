@@ -56,12 +56,17 @@ export class AuthService {
     this.currentUserSource.next(undefined);
   }
 
-  register(username: string, password: string, email: string): Observable<any> {
+  register(username: string, password: string, email: string, firstName: string, lastName: string, city: string, country: string, notificationsAgreement: boolean): Observable<any> {
     return this.http.post(this.url + '/register',
       {
         username,
         password,
-        email
+        email,
+        firstName,
+        lastName,
+        city,
+        country,
+        notificationsAgreement
       }
     )
       .pipe(
