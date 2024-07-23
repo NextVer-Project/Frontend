@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+
 import { UIPresentationConfigService } from '../../services/ui-presentation-config.service';
 
 
@@ -8,8 +10,17 @@ import { UIPresentationConfigService } from '../../services/ui-presentation-conf
 })
 
 export class FooterComponent {
+  showFooter = true;
 
-  constructor(private uiPresentationConfigService: UIPresentationConfigService) { }
+  constructor(private uiPresentationConfigService: UIPresentationConfigService, private router: Router) { }
+
+  ngOnInit(): void {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.showFooter = !event.url.includes('confirm-email');
+      }
+    });
+  }
 
   get selectedTheme() {
     return this.uiPresentationConfigService.getSelectedTheme();
