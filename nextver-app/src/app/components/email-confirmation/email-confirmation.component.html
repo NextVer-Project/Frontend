@@ -1,0 +1,7 @@
+<div class="container" [ngClass]="selectedTheme === 'light' ? 'light-mode' : 'dark-mode'">
+    <div class="content">
+        <img [src]="selectedTheme === 'light' ? './assets/Logo_Square_Light_Mode.png' : './assets/Logo_Square_Dark_Mode.png'" alt="NextVer logo" class="logo">
+        <h1>{{ message }}</h1>
+        <a class="home-link" routerLink="/">Go to Home</a>
+    </div>
+</div>
