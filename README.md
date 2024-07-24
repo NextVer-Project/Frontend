@@ -1,4 +1,7 @@
-# NextVer-App
+# NextVer-App Frontend
+Welcome to the frontend repository of NextVer-App, an application designed to provide users with detailed insights into the quality and availability of movies, games, and TV series across various platforms. Built with Angular, CSS, TypeScript, and Bootstrap, this frontend delivers a seamless and responsive user experience, allowing users to easily browse and compare media content based on their quality, resolution, audio quality and HDR type.
+## UI
+Examples of UI design.
 ### Home page
 ![1](https://github.com/user-attachments/assets/45e99a33-6a24-4ee9-b985-448fef8a5be6)
 ### Login page
@@ -11,3 +14,44 @@
 ![6](https://github.com/user-attachments/assets/0e385d0d-eee0-4a0a-b371-8ab196681fc8)
 ### Management page
 ![2](https://github.com/user-attachments/assets/2a86ea9f-3ed5-4684-9b14-a8d93d24e510)
+
+## NextVer Functionalities
+Presentation of Nextver app functionalities.
+
+### Login page
+
+https://github.com/user-attachments/assets/d02aa4bc-6b74-4511-8fa4-d14de671e60f
+
+### Register page and e-mail confirmation
+
+https://github.com/user-attachments/assets/5d371ce5-6fd1-4845-8b49-5fc37873989c
+
+### Production search
+
+https://github.com/user-attachments/assets/7cf98777-6c69-4034-8768-30c771042653
+
+### Production browser
+
+https://github.com/user-attachments/assets/036e6d52-e2d9-4a33-becc-cf7d7291d01e
+
+
+### Production details page
+
+https://github.com/user-attachments/assets/6fbf3c4b-d12d-4fd0-b393-9fee01d0653e
+
+### Movie add
+
+
+### Movie edit
+
+https://github.com/user-attachments/assets/27bac5ef-58ef-409d-816e-5ddf06789643
+
+### Scroll snap page
+https://github.com/user-attachments/assets/e54a05d8-1ffe-4148-8aeb-37bc5bd43d76
+
+### Light and dark theme
+
+https://github.com/user-attachments/assets/62a44391-037d-4da1-b17e-28c996c8c6e2
+
+
+
