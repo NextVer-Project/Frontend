@@ -18,7 +18,7 @@ Examples of UI design.
 ## NextVer Functionalities
 Presentation of Nextver app functionalities.
 
-### Login page
+### Login page and ngx-toastr notification
 
 https://github.com/user-attachments/assets/d02aa4bc-6b74-4511-8fa4-d14de671e60f
 
@@ -34,24 +34,20 @@ https://github.com/user-attachments/assets/7cf98777-6c69-4034-8768-30c771042653
 
 https://github.com/user-attachments/assets/036e6d52-e2d9-4a33-becc-cf7d7291d01e
 
-
 ### Production details page
 
 https://github.com/user-attachments/assets/6fbf3c4b-d12d-4fd0-b393-9fee01d0653e
 
-### Movie add
+### Management page - movie add 
 
+https://github.com/user-attachments/assets/10803687-8dec-4fa8-ac1f-99729b78e418
 
-### Movie edit
+### Management page - movie edit 
 
 https://github.com/user-attachments/assets/27bac5ef-58ef-409d-816e-5ddf06789643
 
-### Scroll snap page
+### Light and dark theme
 https://github.com/user-attachments/assets/e54a05d8-1ffe-4148-8aeb-37bc5bd43d76
 
-### Light and dark theme
-
+### Scroll snap 
 https://github.com/user-attachments/assets/62a44391-037d-4da1-b17e-28c996c8c6e2
-
-
-
