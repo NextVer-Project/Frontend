@@ -1,7 +1,11 @@
 # NextVer-App Frontend
-Welcome to the frontend repository of NextVer-App, an application designed to provide users with detailed insights into the quality and availability of movies, games, and TV series across various platforms. Built with Angular, CSS, TypeScript, and Bootstrap, this frontend delivers a seamless and responsive user experience, allowing users to easily browse and compare media content based on their quality, resolution, audio quality and HDR type.
-## UI
-Examples of UI design.
+- 🎬 NextVer-App offers users detailed insights and comparisons of movie, game, and TV series quality and availability across various platforms.
+- 🔧 The app also provides admin functionalities with CRUD operations.
+- 🖥️ Frontend is built with Angular, CSS, TypeScript, and Bootstrap. Authentication is based on JWT.
+- 🔗 The backend part of NextVer app: GitHub Repository
+
+## User Interface
+Examples of UI design
 ### Home page
 ![1](https://github.com/user-attachments/assets/45e99a33-6a24-4ee9-b985-448fef8a5be6)
 ### Login page
@@ -16,9 +20,9 @@ Examples of UI design.
 ![2](https://github.com/user-attachments/assets/2a86ea9f-3ed5-4684-9b14-a8d93d24e510)
 
 ## NextVer Functionalities
-Presentation of Nextver app functionalities.
+Presentation of Nextver app functionalities
 
-### Login page and ngx-toastr notification
+### Login page and toastr notification
 
 https://github.com/user-attachments/assets/d02aa4bc-6b74-4511-8fa4-d14de671e60f
 
