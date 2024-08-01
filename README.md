@@ -2,7 +2,7 @@
 - 🎬 NextVer-App offers users detailed insights and comparisons of movie, game, and TV series quality and availability across various platforms.
 - 🔧 The app also provides admin functionalities with CRUD operations.
 - 🖥️ Frontend is built with Angular, CSS, TypeScript, and Bootstrap. Authentication is based on JWT.
-- 🔗 The backend part of NextVer app: [GitHub Repository](https://github.com/NextVer-Project/Backend/)
+- 🔗 The backend part of NextVer app: [Backend Repository](https://github.com/NextVer-Project/Backend/)
 
 ## User Interface
 Examples of UI design
